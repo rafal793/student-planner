@@ -1,11 +1,17 @@
+from datetime import date, timedelta
 
-TERM_START = '2026-03-01'
-TERM_END = '2026-06-30'
+today = date.today()
+TERM_START = (today - timedelta(days=45)).strftime('%Y-%m-%d')
+TERM_END = (today + timedelta(days=90)).strftime('%Y-%m-%d')
+
+def get_future_event_date(days_offset: int, time_str: str) -> str:
+    target = today + timedelta(days=days_offset)
+    return f"{target.strftime('%Y-%m-%d')} {time_str}"
 
 subjects = [
     {
         'title': 'Wstęp do informatyki',
-        'teacher': 'dr Rafał Kawa',
+        'teacher': 'dr inż. Marek Dąbrowski',
         'status': 'atrisk',
         'conditions': 'Obecność obowiązkowa (max 3 nieobecności). Kolokwium 40%, projekt 60%.',
         'max_absences': 3,
@@ -14,17 +20,20 @@ subjects = [
         'current_pluses': 2,
         'current_colloquium_pluses': 8,
         'current_absences': 2,
-        'note': 'Do nadrobienia materiał z listy 4–6.',
+        'note': 'Do nadrobienia materiał z list zadań 4–6.',
         'term_start': TERM_START,
         'term_end': TERM_END,
         'schedule': [
             {'day_of_week': 0, 'start_time': '08:00', 'duration_minutes': 90},
             {'day_of_week': 2, 'start_time': '10:30', 'duration_minutes': 120},
         ],
+        'events': [
+            {'type': 'Kolokwium', 'title': 'Kolokwium wejściowe', 'date_time': get_future_event_date(4, '10:30')},
+        ],
     },
     {
         'title': 'Algebra liniowa',
-        'teacher': 'prof. dr hab. Anna Nowak',
+        'teacher': 'prof. dr hab. Teresa Wójcik',
         'status': 'completed',
         'conditions': 'Egzamin pisemny. Zaliczenie przy min. 50% punktów.',
         'max_absences': 5,
@@ -33,28 +42,29 @@ subjects = [
         'current_pluses': 14,
         'current_colloquium_pluses': 32,
         'current_absences': 0,
-        'note': 'Zaliczone — powtórzyć przed sesją dla własnej satysfakcji.',
+        'note': 'Zaliczone w pierwszym terminie — powtórka przed sesją.',
         'term_start': TERM_START,
         'term_end': TERM_END,
         'schedule': [
             {'day_of_week': 1, 'start_time': '09:00', 'duration_minutes': 90},
         ],
         'events': [
-            {'type': 'Kolokwium', 'title': 'Kolokwium 1', 'date_time': '2026-06-09 09:00'},
+            {'type': 'Kolokwium', 'title': 'Kolokwium 1 - Macierze', 'date_time': get_future_event_date(1, '09:00')},
+            {'type': 'Egzamin', 'title': 'Egzamin zerowy', 'date_time': get_future_event_date(18, '11:00')},
         ],
     },
     {
         'title': 'Bazy danych',
-        'teacher': 'mgr inż. Piotr Wiśniewski',
+        'teacher': 'dr hab. Krzysztof Majewski',
         'status': 'inprogress',
-        'conditions': 'Projekt SQL + prezentacja. Brak zaliczenia projektu = 0 z przedmiotu.',
+        'conditions': 'Projekt SQL + prezentacja. Brak zaliczenia projektu = brak dopuszczenia do egzaminu.',
         'max_absences': 4,
         'max_pluses': 12,
         'max_colloquium_pluses': 28,
         'current_pluses': 7,
         'current_colloquium_pluses': 15,
         'current_absences': 1,
-        'note': 'Projekt: schemat ER do 20.05.',
+        'note': 'Projekt: normalizacja i schemat relacyjny bazy.',
         'term_start': TERM_START,
         'term_end': TERM_END,
         'schedule': [
@@ -62,12 +72,13 @@ subjects = [
             {'day_of_week': 4, 'start_time': '08:00', 'duration_minutes': 100},
         ],
         'events': [
-            {'type': 'Egzamin', 'title': 'Egzamin praktyczny SQL', 'date_time': '2026-06-11 08:00'},
+            {'type': 'Egzamin', 'title': 'Egzamin praktyczny SQL', 'date_time': get_future_event_date(8, '08:00')},
+            {'type': 'Kolokwium', 'title': 'Obrona projektu etapu 1', 'date_time': get_future_event_date(14, '14:00')},
         ],
     },
     {
-        'title': 'Fizyka',
-        'teacher': 'dr Jan Kowalski',
+        'title': 'Fizyka ogólna',
+        'teacher': 'prof. dr hab. Aleksander Rutkowski',
         'status': 'failed',
         'conditions': 'Laboratorium + egzamin. Wymagane zaliczenie wszystkich ćwiczeń.',
         'max_absences': 2,
@@ -76,28 +87,28 @@ subjects = [
         'current_pluses': 1,
         'current_colloquium_pluses': 3,
         'current_absences': 2,
-        'note': 'Poprawka w terminie sesyjnej — ustalić termin z prowadzącym.',
+        'note': 'Poprawka w sesji — skontaktować się w sprawie terminu.',
         'term_start': TERM_START,
         'term_end': TERM_END,
         'schedule': [
             {'day_of_week': 3, 'start_time': '11:00', 'duration_minutes': 45},
         ],
         'events': [
-            {'type': 'Egzamin', 'title': 'Egzamin poprawkowy', 'date_time': '2026-06-11 11:00'},
+            {'type': 'Egzamin', 'title': 'Egzamin poprawkowy - termin 1', 'date_time': get_future_event_date(12, '11:00')},
         ],
     },
     {
         'title': 'Programowanie obiektowe',
-        'teacher': 'dr inż. Maria Zielińska',
+        'teacher': 'dr inż. Joanna Adamska',
         'status': 'inprogress',
-        'conditions': 'Zadania laboratoryjne co tydzień. Egzamin praktyczny na komputerze.',
+        'conditions': 'Zadania laboratoryjne co tydzień. Egzamin praktyczny przy komputerze.',
         'max_absences': 3,
         'max_pluses': 20,
         'max_colloquium_pluses': 40,
         'current_pluses': 18,
         'current_colloquium_pluses': 22,
         'current_absences': 0,
-        'note': 'Lab 7: wzorce projektowe — Singleton, Factory.',
+        'note': 'Wzorce projektowe: Factory, Observer, State.',
         'term_start': TERM_START,
         'term_end': TERM_END,
         'schedule': [
@@ -105,21 +116,22 @@ subjects = [
             {'day_of_week': 3, 'start_time': '10:30', 'duration_minutes': 150},
         ],
         'events': [
-            {'type': 'Kolokwium', 'title': 'Kolokwium — wzorce projektowe', 'date_time': '2026-06-11 10:30'},
+            {'type': 'Kolokwium', 'title': 'Kolokwium z wzorców projektowych', 'date_time': get_future_event_date(3, '10:30')},
+            {'type': 'Egzamin', 'title': 'Projekt końcowy aplikacji', 'date_time': get_future_event_date(22, '12:00')},
         ],
     },
     {
         'title': 'Systemy operacyjne',
-        'teacher': 'prof. dr hab. Tomasz Lewandowski',
+        'teacher': 'dr inż. Tomasz Grabowski',
         'status': 'atrisk',
-        'conditions': 'Kolokwium + praca pisemna. Dopuszczalne 2 nieobecności.',
+        'conditions': 'Kolokwium + praca pisemna. Dopuszczalne maksymalnie 2 nieobecności.',
         'max_absences': 2,
         'max_pluses': 10,
         'max_colloquium_pluses': 25,
         'current_pluses': 4,
         'current_colloquium_pluses': 10,
         'current_absences': 2,
-        'note': 'Zagrożenie z powodu nieobecności — wysłać usprawiedliwienie.',
+        'note': 'Zagrożenie nieobecnościami — dostarczyć zaświadczenie.',
         'term_start': TERM_START,
         'term_end': TERM_END,
         'schedule': [
@@ -127,12 +139,12 @@ subjects = [
             {'day_of_week': 4, 'start_time': '10:00', 'duration_minutes': 60},
         ],
         'events': [
-            {'type': 'Kolokwium', 'title': 'Kolokwium z procesów', 'date_time': '2026-06-12 10:00'},
+            {'type': 'Kolokwium', 'title': 'Zaliczenie z procesów i wątków', 'date_time': get_future_event_date(6, '10:00')},
         ],
     },
     {
         'title': 'Język angielski B2',
-        'teacher': 'mgr Anna Kowalczyk',
+        'teacher': 'mgr Katarzyna Szymańska',
         'status': 'completed',
         'conditions': 'Aktywność na zajęciach + test końcowy. Min. 60% na zaliczenie.',
         'max_absences': 6,
@@ -141,7 +153,7 @@ subjects = [
         'current_pluses': 10,
         'current_colloquium_pluses': 20,
         'current_absences': 1,
-        'note': 'Certyfikat B2 — złożyć w dziekanacie do końca semestru.',
+        'note': 'Certyfikat B2 zaliczony.',
         'term_start': TERM_START,
         'term_end': TERM_END,
         'schedule': [
@@ -149,13 +161,13 @@ subjects = [
             {'day_of_week': 4, 'start_time': '12:00', 'duration_minutes': 45},
         ],
         'events': [
-            {'type': 'Egzamin', 'title': 'Test końcowy B2', 'date_time': '2026-06-06 12:00'},
+            {'type': 'Egzamin', 'title': 'Prezentacja zaliczeniowa', 'date_time': get_future_event_date(10, '12:00')},
         ],
     },
 ]
 
 
-class DatabaseStarter():
+class DatabaseStarter:
     def __init__(self, repo):
         self.repo = repo
 
@@ -207,3 +219,21 @@ class DatabaseStarter():
                     event['title'],
                     event['date_time'],
                 )
+
+
+if __name__ == '__main__':
+    import sqlite3
+    from paths import get_db_path
+    from Database.database_sqllite import SqliteAppRepository
+
+    db_path = get_db_path()
+    connection = sqlite3.connect(db_path)
+    connection.row_factory = sqlite3.Row
+    repo = SqliteAppRepository(connection)
+
+    starter = DatabaseStarter(repo)
+    print("Clearing old subjects...")
+    starter.remove_all_subjects()
+    print("Populating database with test curriculum...")
+    starter.add_test_subjects()
+    print("Database seeding completed successfully.")
