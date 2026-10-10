@@ -1,18 +1,23 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
 
+# Environments
 venv/
 .env/
+env/
+ENV/
 
-.vscode/
-
+# Operating System Files
 .DS_Store
-student_planner.db
+Thumbs.db
 
+# IDEs
+.vscode/
+.idea/
+
+# Distribution / Packaging
 build/
 dist/
-
-frontend/node_modules/
-frontend/dist/
+*.spec
