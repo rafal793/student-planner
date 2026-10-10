@@ -220,6 +220,30 @@ class DatabaseStarter:
                     event['date_time'],
                 )
 
+    def refresh_demo_dates(self):
+        """Przesuwa daty przedmiotów demo względem dziś, żeby kalendarz zawsze pokazywał kafelki."""
+        by_name = {row['name']: row for row in self.repo.get_all_subjects()}
+        conn = self.repo.get_db_connection()
+
+        for data in subjects:
+            subject = by_name.get(data['title'])
+            if not subject:
+                continue
+
+            subject_id = subject['id']
+            conn.execute(
+                "UPDATE subjects SET term_start = ?, term_end = ? WHERE id = ?",
+                (TERM_START, TERM_END, subject_id),
+            )
+            conn.execute("DELETE FROM events WHERE subject_id = ?", (subject_id,))
+            for event in data.get('events', []):
+                conn.execute(
+                    "INSERT INTO events (subject_id, type, title, date_time) VALUES (?, ?, ?, ?)",
+                    (subject_id, event['type'], event['title'], event['date_time']),
+                )
+
+        conn.commit()
+
 
 if __name__ == '__main__':
     import sqlite3

@@ -144,10 +144,11 @@ if __name__ == "__main__":
     repo = SqliteAppRepository(db_connection=None)
     repo.init_db()
 
+    # automatyczne zasilenie bazy / odświeżenie dat demo względem dziś
     DS = DatabaseStarter(repo)
-
-    # aby wczytać defaultowe dane odkomentuj te linie:
-    # DS.remove_all_subjects()
-    # DS.add_test_subjects()
+    if not repo.get_all_subjects():
+        DS.add_test_subjects()
+    else:
+        DS.refresh_demo_dates()
 
     StudentPlannerApp(repository=repo).run()
