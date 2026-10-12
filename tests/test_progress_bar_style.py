@@ -1,6 +1,6 @@
 import pytest
-from unittest.mock import MagicMock, patch
 
+from unittest.mock import MagicMock, patch
 from Models.SubjectData import SubjectData
 from Widgets.progressBar import ProgressBarStyle
 

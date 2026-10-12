@@ -1,6 +1,5 @@
 from kivy.event import EventDispatcher
 from kivy.properties import StringProperty, ObjectProperty
-
 from Style.palettes import PALETTES, DEFAULT_PALETTE_NAME
 
 

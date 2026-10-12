@@ -1,13 +1,9 @@
 
 from dataclasses import dataclass
 from typing import Optional, Union, List
-
 from kivy.utils import get_color_from_hex
 from Style.ButtonState import ButtonState
-
 from abc import ABC, abstractmethod
-
-
 
 class BasicButtonStyle(ABC):
 
@@ -22,9 +18,6 @@ class BasicButtonStyle(ABC):
     @abstractmethod
     def get_text_color(self, state: ButtonState) -> list:
         pass
-
-
-
 
 @dataclass
 class ButtonStyle(BasicButtonStyle):

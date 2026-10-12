@@ -1,6 +1,5 @@
 import re
 from datetime import date
-
 from kivy.factory import Factory
 from kivy.metrics import dp
 from kivy.properties import ObjectProperty
@@ -10,7 +9,6 @@ from kivy.uix.label import Label
 from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen
 from kivy.utils import get_color_from_hex
-
 from KivyWidgets.KivyButtonBackend import CustomToggleButtonWidget
 from KivyWidgets.kivyDatePickerBackend import KivyDatePickerBackend
 from Widgets.datePicker import DatePicker, DatePickerStyle

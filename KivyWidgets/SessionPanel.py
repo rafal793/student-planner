@@ -12,7 +12,7 @@ class SessionPanel(ButtonBehavior, BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.countdown = None
-        self.rendered_countdown = None # Przechowujemy referencję do widgetu na ekranie
+        self.rendered_countdown = None
         Clock.schedule_once(self.add_timer, 0.1)
 
     def add_timer(self, dt):
@@ -57,12 +57,10 @@ class SessionPanel(ButtonBehavior, BoxLayout):
 
         def on_confirm(instance):
             chosen_date = backend.selected_date
-            
-            # 1. Usuwamy stary widget z ekranu
+
             if self.rendered_countdown:
                 self.remove_widget(self.rendered_countdown)
             
-            # 2. Tworzymy nowy licznik
             self.countdown = CountdownWidget(
                 target_date=datetime.combine(chosen_date, datetime.min.time()),
                 backend=KivyCountdownBackend(),
@@ -72,7 +70,6 @@ class SessionPanel(ButtonBehavior, BoxLayout):
                 )
             )
             
-            # 3. Renderujemy i dodajemy nowy, aktualizując referencję
             self.rendered_countdown = self.countdown.render()
             self.add_widget(self.rendered_countdown)
             

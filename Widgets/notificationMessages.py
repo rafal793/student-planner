@@ -1,6 +1,5 @@
 from typing import Callable
 
-
 def subjects_at_absence_limit(subjects: list[dict]) -> list[dict]:
     at_limit = []
     for subject in subjects:

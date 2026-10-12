@@ -5,12 +5,12 @@ from kivy.metrics import dp
 from kivy.graphics import Color, RoundedRectangle
 
 class ThickProgressBar(Widget):
-    def __init__(self, max_value, value, bg_color, fill_color, **kwargs): # Dodajemy kolory tutaj
+    def __init__(self, max_value, value, bg_color, fill_color, **kwargs):
         super().__init__(**kwargs)
         self.max_value = max_value
         self.value = value
-        self.bg_color = bg_color   # Zapisujemy kolor tła
-        self.fill_color = fill_color # Zapisujemy kolor paska
+        self.bg_color = bg_color
+        self.fill_color = fill_color
         self.size_hint_y = None
         self.height = dp(14) 
         
@@ -19,7 +19,6 @@ class ThickProgressBar(Widget):
     def update_canvas(self, *args):
         self.canvas.clear()
         with self.canvas:
-            # Używamy przekazanych kolorów zamiast get_color_from_hex
             Color(rgba=self.bg_color) 
             RoundedRectangle(pos=self.pos, size=self.size, radius=[self.height / 2])
             

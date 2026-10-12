@@ -1,6 +1,5 @@
 import pytest
 from unittest.mock import MagicMock
-
 from Models.SubjectData import SubjectData
 from views.Szczegoly_Przedmiotu.szczegolyPrzedmiotu import SzczegolyPrzedmiotuScreen
 

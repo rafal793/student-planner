@@ -1,9 +1,7 @@
 from KivyWidgets.KivyButtonBackend import CustomButtonWidget , CustomButtonBase
 from kivy.uix.button import ButtonBehavior
 from kivy.uix.boxlayout import BoxLayout
-
 from kivy.properties import ObjectProperty , StringProperty , BooleanProperty
-
 
 class DashboardBrick2( CustomButtonWidget, BoxLayout ):
     subject_obj = ObjectProperty(None)
@@ -17,7 +15,6 @@ class BrickWidget(ButtonBehavior,CustomButtonBase):
     has_note = BooleanProperty(False)
 class BlueBrick(BrickWidget):
     pass
-
 
 class CalendarEventBrick(ButtonBehavior, CustomButtonBase):
     info_text = StringProperty()

@@ -1,5 +1,4 @@
 from datetime import date, timedelta
-
 from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.graphics import Color, Line
@@ -10,7 +9,6 @@ from kivy.uix.widget import Widget
 from kivy.properties import StringProperty, ObjectProperty, NumericProperty
 from kivy.uix.popup import Popup
 from kivy.utils import get_color_from_hex
-
 from Widgets.Brick import CalendarBrickData
 from Widgets.calendarEvents import build_week_calendar_events, merge_same_time_overlays
 from Widgets.calendarTimeLayout import (

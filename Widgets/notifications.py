@@ -2,7 +2,6 @@ from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from kivy.app import App
 from kivy.metrics import dp
-
 from Widgets.notificationMessages import build_notification_messages
 
 

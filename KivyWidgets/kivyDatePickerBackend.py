@@ -1,6 +1,5 @@
 import calendar
 from datetime import date
-
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
@@ -17,11 +16,9 @@ from Widgets.datePicker import DatePickerBackend, DatePickerStyle
 # ==========================================
 
 class RoundedDateButton(Button):
-    # Domyślny ładny, ciemniejszy niebieski (#2e588c)
     bg_color = ColorProperty(get_color_from_hex("#2e588c"))
 
 class RoundedNavBtn(Button):
-    # Domyślny niebieski dla przycisków nawigacji (<, >, <<, >>)
     bg_color = ColorProperty(get_color_from_hex("#2e588c"))
 
 Builder.load_string("""
@@ -112,7 +109,7 @@ class KivyDatePickerBackend(DatePickerBackend):
             text="Zatwierdź",
             size_hint_y=None,
             height=45,
-            bg_color=get_color_from_hex("#4b9e5e") # ZMIANA: Minimalnie ciemniejszy zielony
+            bg_color=get_color_from_hex("#4b9e5e")
         )
         self.confirm_button.bind(on_press=self.confirmDate)
         
@@ -132,32 +129,26 @@ class KivyDatePickerBackend(DatePickerBackend):
     
 
     def refreshCalendar(self):
-        # Pobieramy instancję głównej aplikacji, aby mieć dostęp do tłumaczeń
         app = App.get_running_app()
         lang = app.language
         if hasattr(self, 'title_label'):
             self.title_label.text = app.translations[lang].get("calendar_title", "Wybierz datę sesji")
         
-        # Pobieramy odpowiednie teksty z JSONa (upewnij się, że masz te klucze w swoim pliku)
         months_names = app.translations[lang].get("calendar_months", [])
         days_names = app.translations[lang].get("calendar_days", [])
         confirm_text = app.translations[lang].get("confirm_button", "Confirm")
         
-        # Aktualizacja tekstu przycisku zatwierdzenia
         if self.confirm_button:
             self.confirm_button.text = confirm_text
 
         self.calendar_layout.clear_widgets()
         
-        # Ustawienie nagłówka miesiąca/roku
         if months_names:
             self.month_label.text = f"{months_names[self.current_month - 1]} {self.current_year}"
         
-        # Dodanie nagłówków dni tygodnia
         for name in days_names:
             self.calendar_layout.add_widget(Label(text=name, bold=True, color=get_color_from_hex("#aaaaaa")))
             
-        # Logika generowania dni kalendarza
         month_days = calendar.monthcalendar(self.current_year, self.current_month)
         today = date.today()
         

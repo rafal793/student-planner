@@ -1,7 +1,6 @@
 from kivy.uix.screenmanager import Screen
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import StringProperty, NumericProperty, ObjectProperty
-
 from Widgets.progressBar import ProgressBar, ProgressBarStyle
 from KivyWidgets.kivyProgressBarBackend import KivyProgressBarBackend
 from Models.SubjectData import SubjectData

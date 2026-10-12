@@ -1,6 +1,6 @@
 """Definicje palet kolorów aplikacji.
 
-Przełączanie w UI: potrójne kliknięcie logo (default → midnight → rose).
+Przełączanie w UI: potrójne kliknięcie logo (default - midnight - rose).
 Programowo: app.theme.apply_palette('midnight')
 """
 
@@ -73,7 +73,6 @@ PALETTE_DEFAULT = {
     },
 }
 
-# Ciemny motyw „Midnight” — fioletowo-granatowe tło, miękkie akcenty Tokyo Night.
 PALETTE_MIDNIGHT = {
     'UiColors': {
         'MAIN_BG_COLOR': '#1a1b26',
@@ -143,7 +142,6 @@ PALETTE_MIDNIGHT = {
     },
 }
 
-# Motyw „Rose” — ciepłe tło, akcenty w odcieniach różu i fuchsia.
 PALETTE_ROSE = {
     'UiColors': {
         'MAIN_BG_COLOR': '#1f1518',

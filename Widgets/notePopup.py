@@ -23,10 +23,8 @@ class NotePopup:
         self.on_save = on_save
 
     def open(self):
-        # Generujemy tytuł okienka
         title_text = f"Notatka do zajęć: {self.subject_name} ({self.note_date})"
         
-        # Delegujemy stworzenie UI do backendu (Kivy)
         self._backend.create(
             title_text=title_text,
             existing_text=self.existing_text,
@@ -36,7 +34,6 @@ class NotePopup:
         self._backend.open_popup()
 
     def _handle_save(self, text_content: str):
-        # Jeśli przekazano funkcję zapisującą, wywołujemy ją
         if self.on_save:
             self.on_save(self.subject_id, self.note_date, text_content)
         self._backend.close_popup()

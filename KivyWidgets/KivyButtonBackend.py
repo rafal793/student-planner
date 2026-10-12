@@ -1,12 +1,9 @@
 
 from kivy.uix.button import ButtonBehavior
 from kivy.uix.togglebutton import ToggleButtonBehavior
-
 from kivy.uix.boxlayout import BoxLayout
-
 from kivy.properties import ObjectProperty , BooleanProperty , StringProperty
 from kivy.core.window import Window
-
 from Style.ButtonStyle import ButtonStyle
 from Style.ButtonState import ButtonState
 
@@ -46,8 +43,6 @@ class CustomButtonBase(BoxLayout):
             self.btn_state = ButtonState.HOVER
         else:
             self.btn_state = ButtonState.NORMAL
-
-
 
 class CustomButtonWidget(ButtonBehavior, CustomButtonBase):
     pass

@@ -10,10 +10,7 @@ DB_NAME = get_db_path()
 from functools import wraps
 
 def db_transaction(func):
-    """
-    Dekorator bazy danych. Automatycznie zatwierdza (commit) zmiany po funkcji 
-    i wycofuje je (rollback) w przypadku błędu.
-    """
+
     @wraps(func)
     def wrapper(self, *args, **kwargs):
   
@@ -29,7 +26,7 @@ def db_transaction(func):
            
             conn.rollback()
             print(f"Błąd SQL w metodzie {func.__name__}: {e}")
-            # raise e #
+
 
     return wrapper
 
