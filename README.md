@@ -39,6 +39,8 @@ pip install -r requirements.txt
 python app.py
 ```
 
+Linux: install system SDL2 packages first (see [`documentation/installation_instructions.txt`](documentation/installation_instructions.txt) §2).
+
 Or use the helpers in `scripts/`.
 
 Full setup notes: [`documentation/installation_instructions.txt`](documentation/installation_instructions.txt)
