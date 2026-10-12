@@ -1,0 +1,258 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import ButtonStyle style.ButtonStyle.ButtonStyle
+#:import ButtonState style.ButtonState.ButtonState
+
+
+<BackButton@CustomToggleButtonWidget>:
+    style: ButtonStyle(bg_color=app.theme.ButtonColors.TOP_BAR_BG_COLOR, text_color=app.theme.ButtonColors.TOP_BAR_TEXT_COLOR, border_radius=8)
+    size_hint: 1, 1
+
+<SuccessButton@CustomToggleButtonWidget>:
+    style: ButtonStyle(bg_color=app.theme.SubjectColors.SUBJECT_BG_COLOR_COMPLETED, text_color=app.theme.SubjectColors.SUBJECT_TEXT_COLOR_DARK, border_radius=6, border_color="#ffffff", border_width=dp(1.5))
+    size_hint: 1, 1
+
+<InProgressButton@CustomToggleButtonWidget>:
+    style: ButtonStyle(bg_color=app.theme.SubjectColors.SUBJECT_BG_COLOR_INPROGRESS, text_color=app.theme.SubjectColors.SUBJECT_TEXT_COLOR_DARK, border_radius=6, border_color="#ffffff", border_width=dp(1.5))
+    size_hint: 1, 1
+
+<DangerButton@CustomToggleButtonWidget>:
+    style: ButtonStyle(bg_color=app.theme.SubjectColors.SUBJECT_BG_COLOR_ATRISK, text_color=app.theme.SubjectColors.SUBJECT_TEXT_COLOR_DARK, border_radius=6, border_color="#ffffff", border_width=dp(1.5))
+    size_hint: 1, 1
+
+<FailedButton@CustomToggleButtonWidget>:
+    style: ButtonStyle(bg_color=app.theme.SubjectColors.SUBJECT_BG_COLOR_FAILED, text_color=app.theme.SubjectColors.SUBJECT_TEXT_COLOR_BRIGHT, border_radius=6, border_color="#ffffff", border_width=dp(1.5))
+    size_hint: 1, 1
+
+<RemoveSubjectButton@CustomButtonWidget>:
+    style: ButtonStyle(bg_color=app.theme.ButtonColors.REMOVE_BG_COLOR, text_color=app.theme.ButtonColors.REMOVE_TEXT_COLOR, border_radius=9)
+    size_hint_y: None
+    height: dp(40)
+
+# ========================================================
+# 3. GŁÓWNY WIDOK EKRANU
+# ========================================================
+<SubjectDetailsScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(20)
+
+        # --- GÓRNY PASEK ---
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: self.minimum_height
+            spacing: dp(10)
+            
+            LabelMain:
+                text: f"{app.translate('subject_details_title',app.language)} {root.selectedSubject.title if root.selectedSubject else ''}"
+                font_size: '28sp' 
+
+            BackButton:
+                text: app.translate('back_button' , app.language)
+                size_hint: None, None
+                size: dp(90), dp(35)
+                pos_hint: {'x': 0}
+                on_release: app.change_screen('mySubjects')
+
+        # --- GŁÓWNA ZAWARTOŚĆ ---
+        BoxLayout:
+            spacing: dp(20)
+            
+            # --- LEWA KOLUMNA ---
+            ScrollView:
+                do_scroll_x: False
+                size_hint_x: 0.5
+                bar_width: dp(8)
+                bar_color: get_color_from_hex(app.theme.WidgetColors.SCROLLBAR_COLOR_ACTIVE)
+                bar_inactive_color: get_color_from_hex(app.theme.WidgetColors.SCROLLBAR_COLOR_INACTIVE)
+                
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: dp(15)
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: [0, 0, dp(10), 0]
+                    
+                    # 1. PANEL STATUSU
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: dp(135)
+                        padding: dp(15)
+                        spacing: dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: get_color_from_hex(app.theme.UiColors.SECONDARY_BG_COLOR)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [dp(12)]
+                                
+                        LabelMain:
+                            text: app.translate('current_status' , app.language)
+                            
+                        LabelMain:
+                            text: app.translate('my_subject_' + root.selectedSubject.status , app.language) if root.selectedSubject else app.translate('my_subject_completed', app.language)
+                            color: root.get_status_text_rgba(root.selectedSubject.status if root.selectedSubject else 'unknown')
+                            
+                        BoxLayout:
+                            spacing: dp(10)
+                            size_hint_y: None
+                            height: dp(35) 
+                            
+                            SuccessButton:
+                                group: "status"
+                                id: btn_status_completed
+                                text: app.translate('my_subject_completed', app.language)
+                                on_release: root.change_status('completed')
+
+                            InProgressButton:
+                                group: "status"
+                                id: btn_status_inprogress
+                                text: app.translate('my_subject_inprogress', app.language)
+                                on_release: root.change_status('inprogress')
+
+                            DangerButton:
+                                group: "status"
+                                id: btn_status_atrisk
+                                text: app.translate('my_subject_atrisk', app.language)
+                                on_release: root.change_status('atrisk')
+
+                            FailedButton:
+                                group: "status"
+                                id: btn_status_failed
+                                text: app.translate('my_subject_failed', app.language)
+                                on_release: root.change_status('failed')
+
+                    # 2. PANEL NIEOBECNOŚCI
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(15)
+                        spacing: dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: get_color_from_hex(app.theme.UiColors.SECONDARY_BG_COLOR)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [dp(12)]
+                                
+                        LabelMain:
+                            text: app.translate('absences' , app.language)
+                            
+                        LabelMain:
+                            text: str(root.selectedSubject.absences) + "/" + str(root.selectedSubject.max_absences) if root.selectedSubject else "1/2"
+                            font_size: "30sp"
+                        BoxLayout:
+                            spacing: dp(10)
+                            size_hint_y: None
+                            height: dp(30) 
+                            
+                            MinusButton:
+                                text: "-"
+                                size_hint: None, 1
+                                width: dp(40)
+                                on_release: root.change_absences(-1)
+                            PlusButton:
+                                text: "+"
+                                size_hint: None, 1
+                                width: dp(40)
+                                on_release: root.change_absences(1)
+                            Widget:
+
+                    # 3. PANEL EDYCJI
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: dp(460) 
+                        padding: dp(15)
+                        spacing: dp(8) 
+                        canvas.before:
+                            Color:
+                                rgba: get_color_from_hex(app.theme.UiColors.SECONDARY_BG_COLOR)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [dp(12)]
+                                
+                        LabelMain:
+                            text: app.translate('edit_subject' , app.language)
+                            
+                        # --- TUTAJ WCHODZI KLASA SECONDARY ---
+                        LabelSecondary:
+                            text: app.translate('subject_name' , app.language)
+                        RoundedInput:
+                            id: input_title
+
+                        LabelSecondary:
+                            text: app.translate('teacher' , app.language)
+                        RoundedInput:
+                            id: input_teacher
+                        
+                        LabelSecondary:
+                            text: app.translate('passing_conditions' , app.language)
+                        RoundedInput:
+                            id: input_conditions
+
+                        LabelSecondary:
+                            text: app.translate('max_absences' , app.language)
+                        RoundedInput:
+                            id: input_max_absences
+                            input_filter: 'int'
+                            
+                        LabelSecondary:
+                            text: app.translate('max_pluses' , app.language)
+                        RoundedInput:
+                            id: input_max_pluses
+                            input_filter: 'int'
+
+                        LabelSecondary:
+                            text: app.translate('max_colloqium_pluses' , app.language)
+                        RoundedInput:
+                            id: input_max_colloquium_pluses
+                            input_filter: 'int'
+                            
+                        Widget: 
+
+            # --- PRAWA KOLUMNA (Notatka) ---
+            BoxLayout:
+                orientation: 'vertical'
+                padding: dp(15)
+                spacing: dp(15)
+                size_hint_x: 0.5
+                canvas.before:
+                    Color:
+                        rgba: get_color_from_hex(app.theme.UiColors.SECONDARY_BG_COLOR)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(12)]
+
+                LabelMain:
+                    text: app.translate('general_note' , app.language)
+                RoundedInput:
+                    id: input_note
+                    center_text: False
+                    multiline: True
+                    size_hint_y: 1   # <--- 1. KLUCZ! "Zajmij całe pozostałe miejsce rodzica"
+                    padding: dp(15)
+                    text: (root.selectedSubject.note or "") if root.selectedSubject else ""
+                    
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: dp(40)
+                    spacing: dp(10)
+
+                    StandardUiButton:
+                        text: app.translate('save_changes' , app.language)
+                        size_hint_x: 3
+                        on_release: root.save_changes()
+
+                    RemoveSubjectButton:
+                        text: app.translate('btn_delete_subject', app.language)
+                        size_hint_x: 1
+                        on_release: root.show_delete_subject_popup()

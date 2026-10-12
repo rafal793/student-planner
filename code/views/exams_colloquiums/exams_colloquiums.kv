@@ -1,0 +1,219 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import ButtonStyle style.ButtonStyle.ButtonStyle
+
+<ExamSubjectButton>:
+    size_hint_y: None
+    height: dp(85)
+    size_hint_x: 1
+    style: ButtonStyle(bg_color=app.theme.ButtonColors.NAV_BUTTON_BG_COLOR, text_color=app.theme.ButtonColors.NAV_BUTTON_TEXT_COLOR , pressed_bg_color = app.theme.ButtonColors.NAV_BUTTON_PRESSED_BG_COLOR , pressed_text_color = app.theme.ButtonColors.NAV_BUTTON_PRESSED_TEXT_COLOR  )
+
+<ExamDangerButton@CustomButtonWidget>:
+    style: ButtonStyle(bg_color=app.theme.ButtonColors.REMOVE_BG_COLOR, text_color=app.theme.ButtonColors.REMOVE_TEXT_COLOR, border_radius=9)
+    size_hint_y: None
+    height: dp(40)
+
+<ExamSpinner@Spinner>:
+    background_normal: ''
+    background_color: get_color_from_hex(app.theme.WidgetColors.FORM_TEXTINPUT_BG_COLOR)
+    color: get_color_from_hex(app.theme.WidgetColors.FORM_TEXTINPUT_TEXT_COLOR)
+    size_hint_y: None
+    height: dp(35)
+    text_size: self.width - dp(12), None
+    halign: 'left'
+    valign: 'middle'
+
+<EventCard@FloatLayout>:
+    subject_text: ""
+    date_text: ""
+    title_text: ""
+    size_hint_y: None
+    height: dp(75)
+    canvas.before:
+        Color:
+            rgba: get_color_from_hex(app.theme.ButtonColors.NAV_BUTTON_BG_COLOR)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(12)]
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: 0.8, 1
+        pos_hint: {'x': 0, 'y': 0}
+        padding: [dp(15), dp(10), 0, dp(10)]
+
+        LabelSecondary:
+            text: root.date_text
+
+        LabelMain:
+            text: root.title_text
+            shorten: True
+            shorten_from: 'right'
+            size_hint_y: 1
+
+        LabelSecondary:
+            text: root.subject_text
+            bold: True
+
+    Button:
+        id: btn_delete
+        text: "X"
+        font_size: '18sp'
+        bold: True
+        size_hint: None, None
+        size: dp(30), dp(30)
+        pos_hint: {'right': 0.98, 'top': 0.95}
+        background_normal: ''
+        background_color: 0, 0, 0, 0
+        color: get_color_from_hex(app.theme.ButtonColors.SUBJECT_PLUS_BG_COLOR) if self.state == 'normal' else get_color_from_hex(app.theme.ButtonColors.SUBJECT_MINUS_BG_COLOR)
+
+<ExamsAndColloquiumsScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(20)
+        
+        LabelMain:
+            text: app.translate("exams_tests", app.language)
+            font_size: '28sp'
+
+        BoxLayout:
+            spacing: dp(20)
+
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_x: 0.6
+                padding: dp(15)
+                spacing: dp(10)
+                canvas.before:
+                    Color:
+                        rgba: get_color_from_hex(app.theme.UiColors.SECONDARY_BG_COLOR)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(12)]
+
+                LabelMain:
+                    text: app.translate("lbl_subjects", app.language)
+                    font_size: '16sp'
+
+                ScrollView:
+                    size_hint_y: 1
+                    do_scroll_x: False
+                    do_scroll_y: True
+                    bar_width: dp(6)
+                    bar_color: get_color_from_hex(app.theme.WidgetColors.SCROLLBAR_COLOR_ACTIVE)
+                    bar_inactive_color: get_color_from_hex(app.theme.WidgetColors.SCROLLBAR_COLOR_INACTIVE)
+
+                    GridLayout:
+                        id: subjects_grid
+                        cols: 3
+                        spacing: dp(10)
+                        size_hint_y: None
+                        height: self.minimum_height
+
+                LabelSecondary:
+                    text: app.translate("lbl_event_title", app.language)
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: dp(35)
+                    spacing: dp(10)
+                    RoundedInput:
+                        id: input_event_title
+                        size_hint_x: 1
+                    Widget:
+                        size_hint_x: None
+                        width: dp(40)
+
+                LabelSecondary:
+                    text: app.translate("lbl_event_date", app.language)
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: dp(35)
+                    spacing: dp(10)
+                    RoundedInput:
+                        id: input_event_date
+                        size_hint_x: 1
+                    IconButton:
+                        source: 'images/icon_calendar.png'
+                        size_hint_x: None
+                        width: dp(40)
+                        on_release: root.open_calendar()
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: dp(15)
+                    spacing: dp(15)
+
+                    LabelSecondary:
+                        text: app.translate("lbl_time_hhmm", app.language)
+                        size_hint_x: 0.5
+
+                    LabelSecondary:
+                        text: app.translate("lbl_type", app.language)
+                        size_hint_x: 0.5
+
+                    Widget:
+                        size_hint_x: None
+                        width: dp(35)
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: dp(35)
+                    spacing: dp(15)
+
+                    RoundedInput:
+                        id: input_event_time
+                        size_hint_x: 0.5
+
+                    ExamSpinner:
+                        id: input_event_type
+                        size_hint_x: 0.5
+                        text: app.translate("type_placeholder", app.language)
+                        values: [app.translate("type_exam", app.language), app.translate("type_colloquium", app.language), app.translate("type_project", app.language), app.translate("type_other", app.language)]
+
+                    Widget:
+                        size_hint_x: None
+                        width: dp(35)
+
+                StandardUiButton:
+                    text: app.translate("btn_confirm_add", app.language)
+                    size_hint_x: 1
+                    on_release: root.submit_event()
+
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_x: 0.4
+                padding: dp(15)
+                spacing: dp(10)
+                canvas.before:
+                    Color:
+                        rgba: get_color_from_hex(app.theme.UiColors.SECONDARY_BG_COLOR)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(12)]
+
+                LabelMain:
+                    text: app.translate("lbl_saved_events", app.language)
+                    font_size: '16sp'
+
+                ScrollView:
+                    do_scroll_x: False
+                    do_scroll_y: True
+                    bar_width: dp(6)
+                    bar_color: get_color_from_hex(app.theme.WidgetColors.SCROLLBAR_COLOR_ACTIVE)
+                    bar_inactive_color: get_color_from_hex(app.theme.WidgetColors.SCROLLBAR_COLOR_INACTIVE)
+
+                    BoxLayout:
+                        id: events_container
+                        orientation: 'vertical'
+                        spacing: dp(10)
+                        size_hint_y: None
+                        height: self.minimum_height

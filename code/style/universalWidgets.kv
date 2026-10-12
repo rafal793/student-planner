@@ -1,0 +1,207 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import ButtonStyle style.ButtonStyle.ButtonStyle
+
+<CustomButtonBase>:
+    background_color: (0, 0, 0, 0) 
+    size_hint: None, None
+    size: dp(150), dp(75)
+    
+    canvas.before:
+        # Tło przycisku
+        Color:
+            rgba: root.style.get_bg_color(root.btn_state) if root.style else [0.2, 0.2, 0.2, 1]
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [root.style.border_radius] if root.style else [8]
+
+        # Obramówka (Bezpieczna, z zabezpieczeniem przed awarią 0px)
+        Color:
+            rgba: root.style.get_border_color(root.btn_state) if root.style else [0, 0, 0, 0]
+        Line:
+            width: (dp(root.style.border_width) if (root.style and root.style.border_width > 0) else dp(1))
+            rounded_rectangle: (self.x, self.y, self.width, self.height, (root.style.border_radius if root.style else 8))
+            
+    color: root.style.get_text_color(root.btn_state) if root.style else [1, 1, 1, 1]
+
+<CustomButtonWidget>:
+    Label:
+        markup: True
+        text: root.text
+        halign: 'center'
+        valign: 'middle'
+        text_size: self.size
+        shorten: True
+        shorten_from: 'right'
+        color: root.style.get_text_color(root.btn_state) if root.style else [1, 1, 1, 1]
+
+<CustomToggleButtonWidget>:
+    Label:
+        markup: True
+        text: root.text
+        halign: 'center'
+        valign: 'middle'
+        text_size: self.size
+        shorten: True
+        shorten_from: 'right'
+        color: root.style.get_text_color(root.btn_state) if root.style else [1, 1, 1, 1]
+
+<RoundedInput@TextInput>:
+    center_text: True
+    background_normal: ''
+    background_active: ''
+    background_color: get_color_from_hex(app.theme.WidgetColors.FORM_TEXTINPUT_BG_COLOR)
+    foreground_color: get_color_from_hex(app.theme.WidgetColors.FORM_TEXTINPUT_TEXT_COLOR)
+    cursor_color: 1, 1, 1, 1
+    size_hint_y: None
+    height: dp(35)
+    multiline: False
+    padding_y: [self.height / 2.0 - (self.line_height / 2.0), 0] if self.center_text else [dp(15), dp(15)]
+
+    canvas.after:
+        Color:
+            rgba: get_color_from_hex(app.theme.WidgetColors.FORM_TEXTINPUT_FOCUS_BORDER) if self.focus else [0, 0, 0, 0]
+        Line:
+            width: dp(2)
+            rounded_rectangle: [self.x, self.y, self.width, self.height, dp(6)]
+
+# =========================================================================
+# 2. SEKCJA BRICK (Kafelki kalendarza / przedmiotów)
+# =========================================================================
+<BrickWidget>:
+    background_normal: ''
+    background_color: (0, 0, 0, 0)
+    orientation: 'vertical'
+    size_hint: None, None
+    size: 180, 110
+    padding: [15, 10, 5, 10]
+    spacing: 2
+
+    canvas.before:
+        Color:
+            rgba: root.style.get_bg_color(root.btn_state) if root.style else [0.2, 0.2, 0.2, 1]
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [root.style.border_radius] if root.style else [20]
+            
+        # Opcjonalna ramka wokół kafelka
+        Color:
+            rgba: root.style.get_border_color(root.btn_state) if root.style else [0, 0, 0, 0]
+        Line:
+            width: (dp(root.style.border_width) if (root.style and root.style.border_width > 0) else dp(1))
+            rounded_rectangle: (self.x, self.y, self.width, self.height, (root.style.border_radius if root.style else 20))
+            
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 0.6
+        Label:
+            text: root.title_text
+            bold: True
+            font_size: '18sp'
+            color: root.style.get_text_color(root.btn_state) if root.style else [1, 1, 1, 1]
+            halign: 'left'
+            valign: 'middle'
+            text_size: self.size
+        Image:
+            source: 'images/notebook.png'
+            opacity: 1 if root.has_note else 0
+            size_hint_x: None
+            width: self.height
+            allow_stretch: True
+            keep_ratio: True
+    Label:
+        text: root.info_text
+        size_hint_y: 0.4
+        font_size: '14sp'
+        color: root.style.get_text_color(root.btn_state) if root.style else [1, 1, 1, 0.8]
+        halign: 'left'
+        valign: 'bottom'
+        text_size: self.size
+
+# =========================================================================
+# 3. KONKRETNE IMPLEMENTACJE STYLÓW
+# =========================================================================
+
+<StandardUiButton@CustomButtonWidget>:
+    style: ButtonStyle(bg_color=app.theme.ButtonColors.STANDARD_UI_BUTTON_BG_COLOR, text_color=app.theme.ButtonColors.STANDARD_UI_BUTTON_TEXT_COLOR, hover_bg_color=app.theme.ButtonColors.STANDARD_UI_BUTTON_HOVER_BG_COLOR, pressed_bg_color=app.theme.ButtonColors.STANDARD_UI_BUTTON_PRESSED_BG_COLOR, pressed_text_color=app.theme.ButtonColors.STANDARD_UI_BUTTON_PRESSED_TEXT_COLOR, border_radius=9)
+    size_hint_y: None
+    height: dp(40)
+    text_size: root.width, None
+
+<MinusButton@CustomButtonWidget>:
+    style: ButtonStyle(bg_color=app.theme.ButtonColors.SUBJECT_MINUS_BG_COLOR, text_color=app.theme.ButtonColors.SUBJECT_MINUS_TEXT_COLOR, border_radius=8)
+
+<PlusButton@CustomButtonWidget>:
+    style: ButtonStyle(bg_color=app.theme.ButtonColors.SUBJECT_PLUS_BG_COLOR, text_color=app.theme.ButtonColors.SUBJECT_PLUS_TEXT_COLOR, border_radius=8)
+
+# =========================================================================
+# 4. POPUP POWIADOMIEN (Dzwonek)
+# =========================================================================
+<NotificationPopup>:
+    title: app.translate("popup_notifications", app.language) if app else "Powiadomienia"
+    title_align: 'center'
+    size_hint: 0.8, 0.7 
+    auto_dismiss: False
+    background_color: 0.15, 0.15, 0.15, 1
+    
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 15
+        
+        ScrollView:
+            BoxLayout:
+                id: notifications_container
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: 10
+                
+        StandardUiButton:
+            text: app.translate("btn_close", app.language)
+            size_hint_y: None
+            height: dp(50)
+            size_hint_x: 1
+            on_release: root.dismiss()
+
+
+<IconButton@ButtonBehavior+Image>:
+    color: (0.7, 0.7, 0.7, 1) if self.state == 'down' else (1, 1, 1, 1)
+
+<WhiteCheckBox@CheckBox>:
+    size_hint: None, None
+    size: dp(40), dp(40) 
+    canvas:
+        # Rysuje białą ramkę checkboxa
+        Color:
+            rgba: 1, 1, 1, 1
+        Line:
+            width: dp(1.5) 
+            rectangle: (self.center_x - dp(9), self.center_y - dp(9), dp(18), dp(18)) 
+        
+        # Rysuje wypełniony biały kwadracik w środku, jeśli jest zaznaczony (self.active)
+        Color:
+            rgba: (1, 1, 1, 1) if self.active else (0, 0, 0, 0)
+        Rectangle:
+            pos: self.center_x - dp(5), self.center_y - dp(5)
+            size: dp(10), dp(10)
+
+<LabelMain@Label>:
+    bold: True
+    font_size: '18sp'
+    size_hint_y: None
+    height: self.texture_size[1] 
+    text_size: self.width, None
+    halign: 'left'
+    valign: 'middle'
+    color: app.theme.UiColors.SCREEN_MAIN_TEXT_COLOR
+
+<LabelSecondary@Label>:
+    font_size: '14sp'
+    size_hint_y: None
+    height: self.texture_size[1]
+    text_size: self.width, None
+    halign: 'left'
+    valign: 'middle'
+    color: app.theme.UiColors.SCREEN_SECONDARY_TEXT_COLOR

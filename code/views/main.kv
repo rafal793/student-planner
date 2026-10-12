@@ -1,0 +1,156 @@
+#:import SessionPanel KivyWidgets.SessionPanel.SessionPanel
+#:import LogoTripleClick KivyWidgets.LogoTripleClick.LogoTripleClick
+#:import Factory kivy.factory.Factory
+
+MainLayout:
+
+<MainLayout@BoxLayout>:
+    orientation: 'vertical' # Układ góra-dół
+
+    # ==========================================
+    # GÓRNY PASEK
+    # ==========================================
+    BoxLayout:
+        size_hint_y: None
+        height: dp(80)
+        padding: dp(0) , dp(0) , dp(15) , dp(0)
+        canvas.before:
+            Color:
+                rgba: get_color_from_hex(app.theme.UiColors.TOP_BAR_BG_COLOR)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # Obszar Logo
+        BoxLayout:
+            size_hint_x: None
+            width: dp(185)
+            padding: dp(5)
+            
+            LogoTripleClick:
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+
+        # Środkowy tekst (Najbliższe...)
+        Label:
+            text: app.translate("nearest", app.language) + " " + app.events()
+            color: get_color_from_hex(app.theme.UiColors.TOP_BAR_TEXT_COLOR)
+            bold: True
+
+        # Prawa strona
+        BoxLayout:
+            size_hint_x: None
+            width: dp(180)
+            spacing: dp(10)
+            padding: dp(10) , dp(10) , dp(10) , dp(20)
+
+            CustomButtonWidget:
+                style: ButtonStyle(bg_color=app.theme.ButtonColors.TOP_BAR_BG_COLOR , text_color=app.theme.ButtonColors.TOP_BAR_TEXT_COLOR , border_radius=6)
+                text: "" 
+                size_hint_x: None
+                width: dp(40)
+                height: dp(30)
+                on_release: Factory.NotificationPopup().open()
+                canvas.after:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Rectangle:
+                        source: "images/icon_bell.png"
+                        size: dp(18), dp(18)
+                        pos: self.center_x - dp(9), self.center_y - dp(9)
+            CustomButtonWidget:
+                style: ButtonStyle(bg_color=app.theme.ButtonColors.TOP_BAR_BG_COLOR  , text_color=app.theme.ButtonColors.TOP_BAR_TEXT_COLOR , border_radius=6)
+                text: "ENG" if app.language == "pl" else "PL"
+                size_hint_x: None
+                width: dp(120)
+                height: dp(30)
+                on_release: app.change_language()
+
+    # ==========================================
+    # DOLNA CZĘŚĆ
+    # ==========================================
+    BoxLayout:
+        orientation: 'horizontal'
+
+        # --- LEWY PANEL ---
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x: None
+            width: dp(180)
+            padding: dp(10)
+            spacing: dp(5)
+            canvas.before:
+                Color:
+                    rgba: get_color_from_hex(app.theme.UiColors.SECONDARY_BG_COLOR)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            # Przyciski nawigacyjne
+            StandardUiButton:
+                text: app.translate("start_calendar", app.language)
+                on_release: app.change_screen('calendar')
+            StandardUiButton:
+                text: app.translate("my_subjects_text", app.language)
+                
+                on_release: app.change_screen('mySubjects')
+
+            StandardUiButton:
+                text: app.translate("add_subject", app.language)
+                on_release: app.change_screen('add_subject')
+
+            StandardUiButton:
+                text: app.translate("exams_tests", app.language)
+                on_release: app.change_screen('exams_tests')
+               
+            StandardUiButton:
+                text: app.translate("rules_repository", app.language)
+                on_release: app.change_screen('rules_repository')
+            
+            StandardUiButton:
+                text: app.translate("progress_tracker", app.language)
+                on_release: app.change_screen('progress_tracker')
+            
+            
+            Widget: # spycha sesję na dół
+
+            # Panel Sesji
+            SessionPanel:
+                id: countdown_box
+                orientation: "vertical"
+                size_hint_y: None
+                height: 105
+                padding: 10
+                spacing: 4
+                background_normal: ""
+                background_color: 0,0,0,0
+
+                canvas.before:
+                    Color:
+                        rgba: get_color_from_hex(app.theme.ButtonColors.NAV_BUTTON_BG_COLOR)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [12]
+
+                Label:
+                    text: app.translations[app.language]["countdown_text"]
+                    color: 1, 1, 1, 1
+                    bold: True
+                    font_size: 15
+                    size_hint_y: None
+                    height: 28
+                    halign: "left"
+                    valign: "middle"
+                    text_size: self.size
+
+        # --- GŁÓWNY OBSZAR ROBOCZY ---
+        ScreenManager:
+            id: sm
+            canvas.before:
+                Color:
+                    rgba: get_color_from_hex(app.theme.UiColors.MAIN_BG_COLOR)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size

@@ -1,0 +1,145 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+<SubjectCard>:
+    orientation: 'vertical'
+    size_hint_y: None
+    height: dp(250)
+    padding: [dp(15), dp(8), dp(15), dp(15)]
+    spacing: dp(10)
+    canvas.before:
+        Color:
+            rgba: get_color_from_hex(app.theme.UiColors.SECONDARY_BG_COLOR)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(12)]
+
+    FloatLayout:
+        size_hint_y: None
+        height: dp(32)
+
+        LabelMain:
+            text: root.title
+            font_size: '18sp'
+            halign: 'left'
+            valign: 'middle'
+            text_size: self.size
+            size_hint: 1, None
+            height: dp(32)
+            x: self.parent.x
+            y: self.parent.y
+
+        Label:
+            text: app.translate("my_subject_" + root.status, app.language)
+            size_hint: None, None
+            width: dp(95)
+            height: dp(24)
+            x: self.parent.right - self.width
+            center_y: self.parent.center_y
+            font_size: '12sp'
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+            color: root.get_status_text_rgba()
+            canvas.before:
+                Color:
+                    rgba: root.get_status_bg_rgba()
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [dp(6)]
+
+    LabelSecondary:
+        text: root.teacher
+        font_size: '13sp'
+        size_hint_y: None
+        height: dp(20)
+
+    BoxLayout:
+        id: progress_container_wrapper
+        orientation: 'vertical'
+        padding: dp(10)
+        spacing: dp(5)
+        size_hint_y: None
+        height: dp(60)
+        canvas.before:
+            Color:
+                rgba: get_color_from_hex(app.theme.WidgetColors.FORM_TEXTINPUT_BG_COLOR)
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(8)]
+
+        LabelSecondary:
+            text: app.translate("absences", app.language) + ": " + root.absences
+            font_size: '12sp'
+            bold: True
+
+        BoxLayout:
+            id: progress_container
+            size_hint_y: None
+            height: dp(15)
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [dp(12), dp(10)]
+        spacing: dp(4)
+        size_hint_y: None
+        height: dp(80)
+        canvas.before:
+            Color:
+                rgba: get_color_from_hex(app.theme.UiColors.MAIN_BG_COLOR)
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(5)]
+
+        LabelSecondary:
+            text: app.translate("passing_conditions", app.language)
+            font_size: '10sp'
+            size_hint_y: None
+            height: dp(15)
+
+        ScrollView:
+            size_hint_y: 1
+            do_scroll_x: False
+            do_scroll_y: True
+            bar_width: dp(4)
+            bar_color: get_color_from_hex(app.theme.WidgetColors.SCROLLBAR_COLOR_ACTIVE)
+            bar_inactive_color: get_color_from_hex(app.theme.WidgetColors.SCROLLBAR_COLOR_INACTIVE)
+
+            LabelSecondary:
+                text: root.rules if root.rules else app.translate("no_defined_conditions", app.language)
+                font_size: '12sp'
+                halign: 'left'
+                valign: 'top'
+                size_hint_y: None
+                text_size: self.width, None
+                height: max(self.texture_size[1], self.parent.height)
+
+<RulesRepositoryScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(20)
+
+        LabelMain:
+            text: app.translate("rules_repository", app.language)
+            font_size: '28sp'
+            size_hint_y: None
+            height: dp(50)
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            bar_width: dp(6)
+            bar_color: get_color_from_hex(app.theme.WidgetColors.SCROLLBAR_COLOR_ACTIVE)
+            bar_inactive_color: get_color_from_hex(app.theme.WidgetColors.SCROLLBAR_COLOR_INACTIVE)
+
+            GridLayout:
+                id: rules_container
+                cols: 2
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(20)
+                padding: dp(10)

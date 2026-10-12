@@ -1,0 +1,213 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import ButtonStyle style.ButtonStyle.ButtonStyle
+#:import CustomButtonWidget KivyWidgets.KivyButtonBackend.CustomButtonWidget
+#:import CalendarEventBrick KivyWidgets.KivyBrickBackend.CalendarEventBrick
+
+<CalendarEventBrick@CalendarEventBrick>:
+    note_icon_sz: min(dp(40), max(dp(16), min(self.width, self.height) * 0.34))
+    background_normal: ''
+    background_color: (0, 0, 0, 0)
+    orientation: 'vertical'
+    size_hint: None, None
+    padding: [8, 6, 4, 6]
+    spacing: 2
+    opacity: 0.72 if not root.interactive else 1
+
+    canvas.before:
+        Color:
+            rgba: root.style.get_bg_color(root.btn_state) if root.style else get_color_from_hex(app.theme.WidgetColors.FORM_TEXTINPUT_BG_COLOR)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [root.style.border_radius] if root.style else [20]
+
+        Color:
+            rgba: root.style.get_border_color(root.btn_state) if root.style else [0, 0, 0, 0]
+        Line:
+            width: (dp(root.style.border_width) if (root.style and root.style.border_width > 0) else dp(1))
+            rounded_rectangle: (self.x, self.y, self.width, self.height, (root.style.border_radius if root.style else 20))
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 1 if root.height < dp(44) else (0.52 if root.overlay_label else 0.62)
+        spacing: 4
+
+        Label:
+            text: root.title_text
+            size_hint_x: 1
+            bold: True
+            font_size: '12sp' if root.width < dp(100) else '14sp'
+            shorten: False
+            color: root.style.get_text_color(root.btn_state) if root.style else get_color_from_hex(app.theme.DefaultColors.DEFAULT_BLACK)
+            halign: 'left'
+            valign: 'top'
+            text_size: self.width, None
+
+        AnchorLayout:
+            anchor_x: 'right'
+            anchor_y: 'top'
+            size_hint_x: None
+            width: root.note_icon_sz + dp(6)
+            size_hint_y: 1
+
+            Image:
+                source: 'images/icon_notebook.png'
+                size_hint: None, None
+                size: root.note_icon_sz, root.note_icon_sz
+                opacity: 1 if root.has_note else 0
+                allow_stretch: False
+                keep_ratio: True
+                mipmap: True
+
+    Label:
+        text: root.info_text if root.height >= dp(44) else ''
+        size_hint_y: None if root.height >= dp(44) else 0
+        height: self.texture_size[1] if root.height >= dp(44) else 0
+        font_size: '12sp'
+        shorten: False
+        color: root.style.get_text_color(root.btn_state) if root.style else get_color_from_hex(app.theme.DefaultColors.DEFAULT_BLACK)
+        halign: 'left'
+        valign: 'bottom'
+        text_size: self.width, None
+
+    Label:
+        text: root.overlay_label if root.height >= dp(44) else ''
+        size_hint_y: None if root.height >= dp(44) else 0
+        height: self.texture_size[1] if root.overlay_label and root.height >= dp(44) else 0
+        font_size: '12sp'
+        bold: True
+        shorten: False
+        color: root.style.get_text_color(root.btn_state) if root.style else get_color_from_hex(app.theme.DefaultColors.DEFAULT_BLACK)
+        halign: 'left'
+        valign: 'bottom'
+        text_size: self.width, None
+
+<CalendarWidget>:
+    orientation: "vertical"
+    padding: [30, 20, 30, 20]
+    spacing: 15
+
+    Label:
+        text: app.translate("start_calendar", app.language)
+        font_size: '26sp'
+        bold: True
+        color: get_color_from_hex(app.theme.DefaultColors.DEFAULT_WHITE)
+        size_hint_y: None
+        height: 40
+        halign: "left"
+        valign: "middle"
+        text_size: self.size
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 16
+        spacing: 12
+        size_hint: 1, 1
+
+        canvas.before:
+            Color:
+                rgba: get_color_from_hex(app.theme.UiColors.SECONDARY_BG_COLOR)
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [12]
+
+        Label:
+            text: root.week_label
+            size_hint_y: None
+            height: 30
+            color: get_color_from_hex(app.theme.DefaultColors.DEFAULT_WHITE)
+            font_size: 14
+            halign: "left"
+            valign: "middle"
+            text_size: self.size
+
+        BoxLayout:
+            size_hint_x: 1
+            size_hint_y: None
+            height: 36
+            spacing: 10
+
+            CustomButtonWidget:
+                style: ButtonStyle(bg_color=app.theme.ButtonColors.NAV_BUTTON_BG_COLOR, text_color=app.theme.ButtonColors.NAV_BUTTON_TEXT_COLOR, pressed_bg_color=app.theme.ButtonColors.NAV_BUTTON_PRESSED_BG_COLOR, pressed_text_color=app.theme.ButtonColors.NAV_BUTTON_PRESSED_TEXT_COLOR, border_radius=18, bold=True)
+                text: app.translate("btn_prev", app.language)
+                size_hint_x: 1
+                size_hint_y: None
+                height: dp(36)
+                on_release: root.previous_week()
+
+            CustomButtonWidget:
+                style: ButtonStyle(bg_color=app.theme.ButtonColors.NAV_BUTTON_BG_COLOR, text_color=app.theme.ButtonColors.NAV_BUTTON_TEXT_COLOR, pressed_bg_color=app.theme.ButtonColors.NAV_BUTTON_PRESSED_BG_COLOR, pressed_text_color=app.theme.ButtonColors.NAV_BUTTON_PRESSED_TEXT_COLOR, border_radius=18, bold=True)
+                text: app.translate("btn_next", app.language)
+                size_hint_x: 1
+                size_hint_y: None
+                height: dp(36)
+                on_release: root.next_week()
+
+            CustomButtonWidget:
+                style: ButtonStyle(bg_color=app.theme.ButtonColors.NAV_BUTTON_BG_COLOR, text_color=app.theme.ButtonColors.NAV_BUTTON_TEXT_COLOR, pressed_bg_color=app.theme.ButtonColors.NAV_BUTTON_PRESSED_BG_COLOR, pressed_text_color=app.theme.ButtonColors.NAV_BUTTON_PRESSED_TEXT_COLOR, border_radius=18, bold=True)
+                text: app.translate("btn_current", app.language)
+                size_hint_x: 1.4
+                size_hint_y: None
+                height: dp(36)
+                on_release: root.current_week()
+
+            CustomButtonWidget:
+                style: ButtonStyle(bg_color=app.theme.ButtonColors.NAV_BUTTON_BG_COLOR, text_color=app.theme.ButtonColors.NAV_BUTTON_TEXT_COLOR, pressed_bg_color=app.theme.ButtonColors.NAV_BUTTON_PRESSED_BG_COLOR, pressed_text_color=app.theme.ButtonColors.NAV_BUTTON_PRESSED_TEXT_COLOR, border_radius=18, bold=True)
+                text: app.translate("btn_choose", app.language)
+                size_hint_x: 1.2
+                size_hint_y: None
+                height: dp(36)
+                on_release: root.choose_week()
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 1, 1
+            spacing: 0
+
+            canvas.before:
+                Color:
+                    rgba: get_color_from_hex(app.theme.WidgetColors.FORM_TEXTINPUT_BG_COLOR)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint: 1, 1
+                spacing: 0
+
+                ScrollView:
+                    id: header_scroll
+                    size_hint_y: None
+                    height: dp(48)
+                    do_scroll_x: True
+                    do_scroll_y: False
+                    bar_width: 0
+                    scroll_type: ['content']
+
+                    BoxLayout:
+                        id: header_row
+                        orientation: "horizontal"
+                        size_hint_x: None
+                        width: root.calendar_content_width
+                        height: dp(48)
+                        spacing: 0
+                        padding: [0, 6, 0, 0]
+
+                ScrollView:
+                    id: calendar_scroll
+                    size_hint: 1, 1
+                    do_scroll_x: True
+                    do_scroll_y: True
+                    bar_width: dp(8)
+                    bar_color: get_color_from_hex(app.theme.WidgetColors.SCROLLBAR_COLOR_ACTIVE)
+                    bar_inactive_color: get_color_from_hex(app.theme.WidgetColors.SCROLLBAR_COLOR_INACTIVE)
+                    scroll_type: ['content', 'bars']
+
+                    FloatLayout:
+                        id: week_grid
+                        size_hint: None, None
+                        width: root.calendar_content_width
+                        height: root.calendar_grid_height
