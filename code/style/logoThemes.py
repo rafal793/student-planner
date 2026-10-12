@@ -1,4 +1,4 @@
-"""Generowanie wariantów logo dopasowanych do palet motywu."""
+"""Build logo variants for each color theme."""
 
 from __future__ import annotations
 
@@ -15,7 +15,6 @@ THEME_LOGO_SPECS = {
     'midnight': {'hue_delta': -0.045, 'sat_mul': 1.18, 'val_mul': 1.1},
     'rose': {'hue_delta': 0.42, 'sat_mul': 1.2, 'val_mul': 1.28, 'lighten_grays': True},
 }
-
 
 def _recolor_pixel(r: int, g: int, b: int, a: int, spec: dict) -> tuple[int, int, int, int]:
     if a < 20:
@@ -40,7 +39,6 @@ def _recolor_pixel(r: int, g: int, b: int, a: int, spec: dict) -> tuple[int, int
     nr, ng, nb = colorsys.hsv_to_rgb(h, s, v)
     return int(nr * 255), int(ng * 255), int(nb * 255), a
 
-
 def build_themed_logo(palette_name: str) -> Path:
     spec = THEME_LOGO_SPECS.get(palette_name)
     if spec is None:
@@ -52,13 +50,11 @@ def build_themed_logo(palette_name: str) -> Path:
     img.save(output, optimize=True)
     return output
 
-
 LOGO_BY_PALETTE = {
     'default': 'images/logo_default.png',
     'midnight': 'images/logo_theme_midnight.png',
     'rose': 'images/logo_theme_rose.png',
 }
-
 
 if __name__ == '__main__':
     for name in THEME_LOGO_SPECS:

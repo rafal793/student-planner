@@ -7,14 +7,12 @@ from kivy.uix.label import Label
 from kivy.metrics import dp
 from kivy.factory import Factory
 
-
 STATUS_BTN_IDS = {
     'completed': 'btn_status_completed',
     'inprogress': 'btn_status_inprogress',
     'atrisk': 'btn_status_atrisk',
     'failed': 'btn_status_failed',
 }
-
 
 class SubjectDetailsScreen(Screen):
     selectedSubject = ObjectProperty(None, allownone=True, rebind=True)

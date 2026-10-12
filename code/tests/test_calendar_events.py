@@ -5,7 +5,6 @@ import pytest
 from Widgets.calendarEvents import build_week_calendar_events, merge_same_time_overlays
 from Widgets.Brick import CalendarBrickData
 
-
 def test_build_week_events_maps_schedule_to_weekday():
     week_start = date(2026, 10, 5)
     schedule = [{
@@ -30,7 +29,6 @@ def test_build_week_events_maps_schedule_to_weekday():
     assert brick.layout_key == 'schedule-1'
     assert brick.subject_id == 1
 
-
 def test_build_week_events_normalizes_non_monday_week_start():
     week_start = date(2026, 10, 7)
     schedule = [{
@@ -49,7 +47,6 @@ def test_build_week_events_normalizes_non_monday_week_start():
     assert len(events) == 1
     assert events[0]['date'] == date(2026, 10, 5)
 
-
 def test_build_week_events_respects_term_end():
     week_start = date(2027, 2, 1)
     schedule = [{
@@ -65,7 +62,6 @@ def test_build_week_events_respects_term_end():
 
     events = build_week_calendar_events(week_start, schedule)
     assert events == []
-
 
 def test_build_week_events_includes_exams():
     week_start = date(2026, 6, 1)
@@ -90,7 +86,6 @@ def test_build_week_events_includes_exams():
     assert brick.title == 'Matematyka'
     assert brick.clickable is False
 
-
 def test_build_week_events_includes_kolokwium():
     week_start = date(2026, 6, 1)
     events = build_week_calendar_events(
@@ -109,7 +104,6 @@ def test_build_week_events_includes_kolokwium():
     assert len(events) == 1
     assert events[0]['data'].event_type == 'kolokwium'
     assert events[0]['data'].clickable is False
-
 
 def test_build_week_events_skips_project_and_other():
     week_start = date(2026, 6, 1)
@@ -134,7 +128,6 @@ def test_build_week_events_skips_project_and_other():
     events = build_week_calendar_events(week_start, [], timed_events)
     assert events == []
 
-
 def test_build_week_events_skips_exam_outside_week():
     week_start = date(2026, 6, 1)
     events = build_week_calendar_events(
@@ -150,7 +143,6 @@ def test_build_week_events_skips_exam_outside_week():
         }],
     )
     assert events == []
-
 
 def test_merge_same_time_overlay_into_lesson():
     lesson = CalendarBrickData(
@@ -181,7 +173,6 @@ def test_merge_same_time_overlay_into_lesson():
     assert merged[0].clickable is True
     assert merged[0].overlay_label == 'Kolokwium'
     assert merged[0].overlay_event_type == 'kolokwium'
-
 
 def test_merge_keeps_standalone_overlay_when_time_differs():
     lesson = CalendarBrickData(

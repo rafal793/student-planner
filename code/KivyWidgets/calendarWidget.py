@@ -23,7 +23,6 @@ from Widgets.datePicker import DatePicker, DatePickerStyle
 from KivyWidgets.kivyDatePickerBackend import KivyDatePickerBackend
 from style.ButtonStyle import ButtonStyle
 
-
 DAY_NAMES = {
     'pl': {0: "Pon", 1: "Wt", 2: "Śr", 3: "Czw", 4: "Pt", 5: "Sob", 6: "Ndz"},
     'en': {0: "Mon", 1: "Tue", 2: "Wed", 3: "Thu", 4: "Fri", 5: "Sat", 6: "Sun"},
@@ -32,7 +31,6 @@ DAY_NAMES = {
 HEADER_HEIGHT = dp(48)
 MIN_COLUMN_WIDTH = dp(96)
 COLUMN_PADDING = dp(4)
-
 
 class CalendarWidget(BoxLayout):
     week_label = StringProperty("")

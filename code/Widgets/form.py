@@ -6,7 +6,6 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.graphics import Color, Rectangle
 
-
 #PLACEHOLDER
 def openCalendar():
 
@@ -30,9 +29,6 @@ class FormStyle:
         self.field_background_color = field_background_color
         self.field_text_color = field_text_color
 
-
-
-
 class FormField:
 
     def __init__(
@@ -48,9 +44,6 @@ class FormField:
         
         self.use_calendar = use_calendar
 
-
-
-
 class FormBackend(ABC):
 
     @abstractmethod
@@ -65,8 +58,6 @@ class FormBackend(ABC):
     @abstractmethod
     def getValues(self):
         pass
-
-
 
 class KivyFormBackend(FormBackend):
 
@@ -253,8 +244,6 @@ class KivyFormBackend(FormBackend):
 
         self.bg_rect.pos = instance.pos
         self.bg_rect.size = instance.size
-
-
 
 class FormWidget:
 

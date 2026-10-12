@@ -13,10 +13,8 @@ from KivyWidgets.KivyButtonBackend import CustomToggleButtonWidget
 from KivyWidgets.kivyDatePickerBackend import KivyDatePickerBackend
 from Widgets.datePicker import DatePicker, DatePickerStyle
 
-
 class ExamSubjectButton(CustomToggleButtonWidget):
     pass
-
 
 class ExamsAndColloquiumsScreen(Screen):
     repo = ObjectProperty(None)

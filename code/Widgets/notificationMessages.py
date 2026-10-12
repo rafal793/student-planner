@@ -11,7 +11,6 @@ def subjects_at_absence_limit(subjects: list[dict]) -> list[dict]:
             at_limit.append(subject)
     return sorted(at_limit, key=lambda item: item.get('name', ''))
 
-
 def build_notification_messages(
     subjects: list[dict],
     upcoming_events: list[dict],

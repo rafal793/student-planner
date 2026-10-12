@@ -24,9 +24,8 @@ from KivyWidgets.kivyDatePickerBackend import KivyDatePickerBackend
 
 kv_path = os.path.join(parent_dir, 'kv', 'add_subject.kv')
 
-
 def normalize_start_time(time_str):
-    """Akceptuje H:MM lub HH:MM; zwraca HH:MM albo None przy błędzie."""
+    """Accept H:MM or HH:MM; return HH:MM, or None if invalid."""
     match = re.match(r'^(\d{1,2}):(\d{2})$', (time_str or '').strip())
     if not match:
         return None
@@ -36,17 +35,16 @@ def normalize_start_time(time_str):
         return None
     return f"{hour:02d}:{minute:02d}"
 
-
 class AddSubjectScreen(Screen):
     repo = ObjectProperty(None)
     app = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.active_date_field = None  # przechowuje informacje, które pole daty aktualizujemy
+        self.active_date_field = None  # which date field we are editing
 
     def open_calendar(self, field_id):
-        """Otwiera własny DatePicker zamiast MDDatePicker."""
+        """Open our DatePicker (not MDDatePicker)."""
         self.active_date_field = field_id
 
         dp_style = DatePickerStyle(
@@ -86,7 +84,7 @@ class AddSubjectScreen(Screen):
         popup.open()
 
     def save_subject(self):
-        # 1. POBIERANIE DANYCH
+        # read form fields
         subject_name = self.ids.input_name.text.strip()
         teacher_name = self.ids.input_teacher.text.strip()
         pass_conditions = self.ids.input_conditions.text.strip()
@@ -94,7 +92,7 @@ class AddSubjectScreen(Screen):
         start_date = self.ids.input_start_date.text.strip()
         end_date = self.ids.input_end_date.text.strip()
 
-        # 2. WALIDACJA TEKSTÓW
+        # validate text fields
         if not subject_name:
             self.show_error_popup(self.app.translate("err_subject_req", self.app.language))
             return
@@ -102,7 +100,7 @@ class AddSubjectScreen(Screen):
             self.show_error_popup(self.app.translate("err_teacher_req", self.app.language))
             return
 
-        # 3. WALIDACJA DAT
+        # validate dates
         try:
             d_start = datetime.strptime(start_date, '%Y-%m-%d')
             d_end = datetime.strptime(end_date, '%Y-%m-%d')
@@ -113,7 +111,7 @@ class AddSubjectScreen(Screen):
             self.show_error_popup(self.app.translate("err_invalid_dates", self.app.language))
             return
 
-        # 4. KONWERSJA I WALIDACJA LICZB
+        # parse and validate numbers
         try:
             def parse_float(val):
                 return float(val.strip().replace(',', '.'))
@@ -138,13 +136,13 @@ class AddSubjectScreen(Screen):
             self.show_error_popup(self.app.translate("err_num_only", self.app.language))
             return
 
-        # 5. WALIDACJA GODZINY
+        # validate start time
         start_time = normalize_start_time(start_time)
         if start_time is None:
             self.show_error_popup(self.app.translate("err_start_time", self.app.language))
             return
 
-        # 6. DNI TYGODNIA
+        # weekdays
         day_mapping = {self.ids.chk_mon: 0, self.ids.chk_tue: 1, self.ids.chk_wed: 2, 
                        self.ids.chk_thu: 3, self.ids.chk_fri: 4, self.ids.chk_sat: 5, self.ids.chk_sun: 6}
         selected_days = [val for chk, val in day_mapping.items() if chk.active]
@@ -153,7 +151,7 @@ class AddSubjectScreen(Screen):
             self.show_error_popup(self.app.translate("err_select_day", self.app.language))
             return
 
-        # 7. ZAPIS DO BAZY
+        # save to database
         try:
             self.repo.add_subject_with_schedule({
                 'title': subject_name,
@@ -218,21 +216,3 @@ class AddSubjectScreen(Screen):
         )
         btn_ok.bind(on_release=popup.dismiss)
         popup.open()
-
-'''
-class AddSubjectTestApp(App):
-    def build(self):
-        Factory.register('CustomButtonWidget', cls=CustomButtonWidget)
-        Builder.load_file(kv_path)
-        return AddSubjectScreen()
-
-
-if __name__ == "__main__":
-    from kivy.core.window import Window
-    Window.clearcolor = (0.08, 0.12, 0.18, 1)
-    Window.minimum_width = 1000
-    Window.minimum_height = 700
-    
-    db.init_db()
-    AddSubjectTestApp().run()
-'''

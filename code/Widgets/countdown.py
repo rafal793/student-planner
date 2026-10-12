@@ -6,23 +6,16 @@ from kivy.clock import Clock
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 
-
-
-
 class CountdownState(Enum):
     RUNNING = auto()
     COMPLETED = auto()
     STOPPED = auto()
-
 
 class CountdownStyle:
 
     def __init__(self, bg_color, text_color):
         self.bg_color = bg_color
         self.text_color = text_color
-
-
-
 
 class CountdownBackend(ABC):
 
@@ -33,9 +26,6 @@ class CountdownBackend(ABC):
     @abstractmethod
     def setTime(self, text: str):
         pass
-
-
-
 
 class KivyCountdownBackend(CountdownBackend):
 
@@ -67,7 +57,6 @@ class KivyCountdownBackend(CountdownBackend):
 
         self.label.text = text
 
-
 class CountdownWidget:
 
     def __init__(
@@ -89,7 +78,7 @@ class CountdownWidget:
 
         widget = self._backend.create(self.style)
 
-        # natychmiast pokazuje aktualny czas
+        # show current time right away
         self._update_time()
         
         self._event = Clock.schedule_interval(self._tick, 1)

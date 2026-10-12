@@ -11,9 +11,7 @@ from kivy.app import App
 
 from Widgets.datePicker import DatePickerBackend, DatePickerStyle
 
-# ==========================================
-# DEFINICJE KLAS PRZYCISKÓW (PYTHON + KIVY)
-# ==========================================
+# button helpers for the date picker
 
 class RoundedDateButton(Button):
     bg_color = ColorProperty(get_color_from_hex("#2e588c"))
@@ -49,9 +47,7 @@ Builder.load_string("""
             radius: [5]
 """)
 
-# ==========================================
-# GŁÓWNA KLASA BACKENDU
-# ==========================================
+# date picker backend
 class KivyDatePickerBackend(DatePickerBackend):
     def __init__(self):
         self.root = None

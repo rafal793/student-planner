@@ -1,7 +1,7 @@
-"""Definicje palet kolorów aplikacji.
+"""Color palettes for the app.
 
-Przełączanie w UI: potrójne kliknięcie logo (default - midnight - rose).
-Programowo: app.theme.apply_palette('midnight')
+Switch in UI by triple-clicking the logo (default / midnight / rose).
+Or in code: app.theme.apply_palette('midnight')
 """
 
 PALETTE_DEFAULT = {

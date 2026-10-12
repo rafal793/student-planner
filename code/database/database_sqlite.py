@@ -3,9 +3,7 @@ import sqlite3
 from database.database_interface import IAppRepository
 from paths import get_db_path
 
-
 DB_NAME = get_db_path()
-
 
 from functools import wraps
 
@@ -25,11 +23,9 @@ def db_transaction(func):
         except sqlite3.Error as e:
            
             conn.rollback()
-            print(f"Błąd SQL w metodzie {func.__name__}: {e}")
-
+            print(f"SQL error in {func.__name__}: {e}")
 
     return wrapper
-
 
 class SqliteAppRepository(IAppRepository):
     def __init__(self , db_connection) -> None:
@@ -39,7 +35,7 @@ class SqliteAppRepository(IAppRepository):
        
         cursor = self.get_db_connection().cursor()
 
-        # TABELA 1: PRZEDMIOTY (glowna konfiguracja + sledzenie postepow)
+        # subjects
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS subjects (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -48,42 +44,42 @@ class SqliteAppRepository(IAppRepository):
                 status TEXT DEFAULT 'inprogress' CHECK(status IN ('inprogress', 'completed', 'atrisk', 'failed')),
                 grading_rules TEXT,              
                 max_absences INTEGER DEFAULT 0,
-                current_absences INTEGER DEFAULT 0,  -- sledzenie biezacych nieobecnosci
+                current_absences INTEGER DEFAULT 0,  -- current absences
                 max_activity_points REAL DEFAULT 0,
-                current_activity_points REAL DEFAULT 0, -- aktualnie zdobyte punkty z aktywnosci
+                current_activity_points REAL DEFAULT 0, -- activity points so far
                 max_colloquium_points REAL DEFAULT 0,
-                current_colloquium_points REAL DEFAULT 0, -- aktualnie zdobyte punkty z kolokwiow
+                current_colloquium_points REAL DEFAULT 0, -- colloquium points so far
                 term_start TEXT,                 
                 term_end TEXT,
                 note TEXT                    
             )
         ''')
 
-        # TABELA 2: HARMONOGRAM
+        # weekly schedule
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS schedule (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 subject_id INTEGER,
-                day_of_week INTEGER, -- w INTEGER (0=Pon, 6=Niedz)
+                day_of_week INTEGER, -- 0=Mon ... 6=Sun
                 start_time TEXT,                 
-                duration_minutes INTEGER, -- czas trwania zajec
+                duration_minutes INTEGER, -- lesson duration
                 FOREIGN KEY (subject_id) REFERENCES subjects (id) ON DELETE CASCADE
             )
         ''')
 
-        # TABELA 3: NOTATKI
+        # daily notes
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS daily_notes (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 subject_id INTEGER,
                 note_date TEXT NOT NULL,         
                 content TEXT,
-                UNIQUE(subject_id, note_date), -- brak mozliwosci stworzenia dwoch roznych notatek dla tego samego przedmiotu w tym samym dniu
+                UNIQUE(subject_id, note_date), -- one note per subject per day
                 FOREIGN KEY (subject_id) REFERENCES subjects (id) ON DELETE CASCADE
             )
         ''')
 
-        # TABELA 4: WYDARZENIA
+        # events (exams, etc.)
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS events (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -95,7 +91,7 @@ class SqliteAppRepository(IAppRepository):
             )
         ''')
 
-        # TABELA 5: USTAWIENIA
+        # app settings
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS app_settings (
                 key TEXT PRIMARY KEY,
@@ -106,7 +102,7 @@ class SqliteAppRepository(IAppRepository):
 
         self.get_db_connection().commit()
         
-        print("Baza danych gotowa do pracy!")
+        print("Database ready.")
    
 
     def get_db_connection(self):
@@ -140,7 +136,6 @@ class SqliteAppRepository(IAppRepository):
     def get_all_subjects(self) -> list[dict]:
         rows = self.get_db_connection().execute("SELECT * FROM subjects").fetchall()
         return [dict(row) for row in rows]
-
 
     @db_transaction
     def add_absence(self, subject_id: int, amount: int = 1) -> int:

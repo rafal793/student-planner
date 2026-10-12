@@ -8,13 +8,10 @@ from tests.create_default_values import DatabaseStarter
 
 @pytest.fixture
 def db_repo():
-# ==========================================
-#   konfiguracja środowiska testowego
-#   tworzy nowa, czysta baze danych w pamieci RAM przed kazdym testem
-# ==========================================
+# fresh in-memory DB before each test
     connection = sqlite3.connect(':memory:')
     connection.row_factory = sqlite3.Row
-    # obluga kluczy obcych dla testow kaskadowego usuwania
+    # need foreign keys for cascade-delete tests
     connection.execute("PRAGMA foreign_keys = ON;") 
     
     repo = SqliteAppRepository(connection)
@@ -24,9 +21,7 @@ def db_repo():
     
     connection.close()
 
-# ==========================================
-# TESTY INICJALIZACJI
-# ==========================================
+# init
 
 def test_init_db_creates_all_tables(db_repo):
     connection = db_repo.get_db_connection()
@@ -40,21 +35,17 @@ def test_init_db_creates_all_tables(db_repo):
     assert 'events' in tables
     assert 'app_settings' in tables
 
-# ==========================================
-# TESTY USTAWIEN (SETTINGS)
-# ==========================================
+# settings
 
 def test_language_settings(db_repo):
 
     assert db_repo.get_language() == 'pl'
     
-    # zmiana jezyka
+    # language change
     db_repo.set_language('en')
     assert db_repo.get_language() == 'en'
 
-# ==========================================
-# TESTY PRZEDMIOTOW (SUBJECTS)
-# ==========================================
+# subjects
 
 def test_add_and_get_subjects(db_repo):
     subject_data = {
@@ -175,7 +166,6 @@ def test_add_subject_with_schedule(db_repo):
     assert rows[0]['day_of_week'] == 2
     assert rows[0]['duration_minutes'] == 120
 
-
 def test_get_all_schedule_entries(db_repo):
     subject_id = db_repo.add_subject_with_schedule({
         'title': 'Bazy Danych',
@@ -198,7 +188,6 @@ def test_get_all_schedule_entries(db_repo):
     assert entries[0]['subject_name'] == 'Bazy Danych'
     assert entries[0]['start_time'] == '11:00'
 
-
 def test_get_events_in_range(db_repo):
     db_repo.add_subject({'title': 'Fizyka'})
     subject_id = db_repo.get_all_subjects()[0]['id']
@@ -209,7 +198,6 @@ def test_get_events_in_range(db_repo):
 
     assert len(events) == 1
     assert events[0]['title'] == 'Kolokwium'
-
 
 def test_seed_schedule_spreads_across_week(db_repo):
     DatabaseStarter(db_repo).add_test_subjects()
@@ -226,41 +214,37 @@ def test_seed_schedule_spreads_across_week(db_repo):
     assert len(by_date['2026-06-04']) == 2
     assert len(by_date['2026-06-05']) == 3
 
-# ==========================================
-# TESTY NIEOBECNOŚCI (LOGIKA BIZNESOWA)
-# ==========================================
+# absences
 
 def test_add_absence_logic(db_repo):
     db_repo.add_subject({'title': 'Rysunek Techniczny'})
     subject_id = db_repo.get_all_subjects()[0]['id']
     
-    # didaje 2 nieobecnosci
+    # add 2 absences
     current = db_repo.add_absence(subject_id, 2)
     assert current == 2
     
-    # odejmuje 1 nieobecnosc
+    # remove 1 absence
     current = db_repo.add_absence(subject_id, -1)
     assert current == 1
     
-    # odejmuje 5 nieobecnosci - system powinien zatrzymac sie na 0 (MAX(0, ...))
+    # should not go below 0
     current = db_repo.add_absence(subject_id, -5)
     assert current == 0
 
-# ==========================================
-# TESTY NOTATEK DZIENNYCH (DAILY NOTES)
-# ==========================================
+# daily notes
 
 def test_set_and_get_daily_note(db_repo):
     db_repo.add_subject({'title': 'Programowanie w Pythonie'})
     subject_id = db_repo.get_all_subjects()[0]['id']
     test_date = '2026-06-01'
     
-    # tworzymy nowa notatke
+    # create note
     db_repo.set_daily_note(subject_id, test_date, 'Nauka dekoratorów i generatorów')
     note_content = db_repo.get_daily_note(subject_id, test_date)
     assert note_content == 'Nauka dekoratorów i generatorów'
     
-    # testujemy mechanizm nadpisywania
+    # overwrite same day/subject
     db_repo.set_daily_note(subject_id, test_date, 'Zaktualizowana treść notatki z zajęć')
     updated_content = db_repo.get_daily_note(subject_id, test_date)
     assert updated_content == 'Zaktualizowana treść notatki z zajęć'
@@ -282,7 +266,6 @@ def test_add_subject_minimum_data(db_repo):
     assert subject['status'] == 'inprogress'
     assert subject['current_absences'] == 0
 
-
 def test_add_multiple_subjects(db_repo):
     for i in range(10):
         db_repo.add_subject({'title': f'Przedmiot {i}'})
@@ -291,18 +274,15 @@ def test_add_multiple_subjects(db_repo):
 
     assert len(subjects) == 10
 
-
 def test_update_nonexistent_subject(db_repo):
     db_repo.update_subject(9999,{'title': 'Nieistniejący'})
 
     assert db_repo.get_all_subjects() == []
 
-
 def test_remove_nonexistent_subject(db_repo):
     db_repo.remove_subject(9999)
 
     assert db_repo.get_all_subjects() == []
-
 
 def test_remove_all_subjects(db_repo):
     db_repo.add_subject({'title': 'A'})
@@ -315,7 +295,6 @@ def test_remove_all_subjects(db_repo):
 
     assert db_repo.get_all_subjects() == []
 
-
 def test_absences_cannot_go_below_zero(db_repo):
     db_repo.add_subject({'title': 'Matma'})
     subject_id = db_repo.get_all_subjects()[0]['id']
@@ -324,12 +303,10 @@ def test_absences_cannot_go_below_zero(db_repo):
 
     assert current == 0
 
-
 def test_add_absence_nonexistent_subject(db_repo):
     current = db_repo.add_absence(9999, 1)
 
     assert current == 0
-
 
 def test_large_absence_increment(db_repo):
     db_repo.add_subject({'title': 'Historia'})
@@ -338,7 +315,6 @@ def test_large_absence_increment(db_repo):
     current = db_repo.add_absence(subject_id, 1000)
 
     assert current == 1000
-
 
 def test_multiple_status_changes(db_repo):
     db_repo.add_subject({'title': 'Matma'})
@@ -352,12 +328,10 @@ def test_multiple_status_changes(db_repo):
 
     assert subject['status'] == 'completed'
 
-
 def test_set_status_nonexistent_subject(db_repo):
     db_repo.set_status(9999, 'completed')
 
     assert db_repo.get_all_subjects() == []
-
 
 def test_set_empty_daily_note(db_repo):
     db_repo.add_subject({'title': 'Programowanie'})
@@ -368,7 +342,6 @@ def test_set_empty_daily_note(db_repo):
     note = db_repo.get_daily_note(subject_id,'2026-06-01')
 
     assert note == ''
-
 
 def test_very_long_daily_note(db_repo):
     db_repo.add_subject({'title': 'Programowanie'})
@@ -382,7 +355,6 @@ def test_very_long_daily_note(db_repo):
 
     assert note == long_note
 
-
 def test_multiple_daily_notes_for_same_subject(db_repo):
     db_repo.add_subject({'title': 'Programowanie'})
     subject_id = db_repo.get_all_subjects()[0]['id']
@@ -395,14 +367,12 @@ def test_multiple_daily_notes_for_same_subject(db_repo):
 
     assert db_repo.get_daily_note(subject_id,'2026-06-02') == 'Notatka 2'
 
-
 def test_polish_characters(db_repo):
     db_repo.add_subject({'title': 'Programowanie Obiektowe','teacher': 'Łukasz Żółć'})
 
     subject = db_repo.get_all_subjects()[0]
 
     assert subject['teacher'] == 'Łukasz Żółć'
-
 
 def test_unicode_subject_name(db_repo):
     db_repo.add_subject({'title': '📚 Matematyka 🚀'})
@@ -411,10 +381,8 @@ def test_unicode_subject_name(db_repo):
 
     assert subject['name'] == '📚 Matematyka 🚀'
 
-
 def test_default_language_exists(db_repo):
     assert db_repo.get_language() == 'pl'
-
 
 def test_language_multiple_changes(db_repo):
     db_repo.set_language('en')
@@ -422,7 +390,6 @@ def test_language_multiple_changes(db_repo):
     db_repo.set_language('pl')
 
     assert db_repo.get_language() == 'pl'
-
 
 def test_cascade_delete_daily_notes(db_repo):
     db_repo.add_subject({'title': 'Programowanie'})
@@ -438,7 +405,6 @@ def test_cascade_delete_daily_notes(db_repo):
     count = connection.execute("SELECT COUNT(*) AS cnt FROM daily_notes").fetchone()['cnt']
     assert count == 0
 
-
 def test_subject_ids_are_unique(db_repo):
     db_repo.add_subject({'title': 'A'})
     db_repo.add_subject({'title': 'B'})
@@ -448,20 +414,17 @@ def test_subject_ids_are_unique(db_repo):
     ids = [s['id'] for s in subjects]
     assert len(ids) == len(set(ids))
 
-
 def test_empty_teacher_is_allowed(db_repo):
     db_repo.add_subject({'title': 'Matematyka','teacher': ''})
 
     subject = db_repo.get_all_subjects()[0]
     assert subject['teacher'] == ''
 
-
 def test_empty_conditions_are_allowed(db_repo):
     db_repo.add_subject({'title': 'Matematyka', 'conditions': ''})
 
     subject = db_repo.get_all_subjects()[0]
     assert subject['grading_rules'] == ''
-
 
 def test_add_and_get_all_events(db_repo):
     subject_id = db_repo.get_all_subjects()[0]['id'] if db_repo.get_all_subjects() else None
@@ -476,7 +439,6 @@ def test_add_and_get_all_events(db_repo):
     assert events[0]['title'] == "Kolokwium 1"
     assert events[0]['subject_name'] == "IO"
     assert events[0]['type'] == "Egzamin"
-
 
 def test_remove_event(db_repo):
     db_repo.add_subject({'title': 'SK', 'teacher': 'Nowak'})

@@ -1,8 +1,6 @@
 #:import ButtonStyle style.ButtonStyle.ButtonStyle
 #:import get_color_from_hex kivy.utils.get_color_from_hex
 
-
-
 <DashboardBrick>:
     size_hint: 1, None
     height: dp(120)
@@ -23,13 +21,13 @@
                     radius: [root.style.border_radius] if root.style else [dp(20)]
                 StencilUse
                 
-                # B. Rysowanie obrazka bezpośrednio na płótnie
+                # draw image on canvas
                 Color:
-                    rgba: 1, 1, 1, 0.1 # Opacity (Przezroczystość)
+                    rgba: 1, 1, 1, 0.1 # opacity
                 Rectangle:
                     source: 'images/notebook.png'
                     size: self.height * 1.5, self.height * 1.5
-                    # x = krawędź minus 60%, y = wyśrodkowanie pionowe
+                    # position near the right edge
                     pos: self.width - (self.height * 1.5 * 0.6), (self.height - (self.height * 1.5)) / 2
                 
 
@@ -63,7 +61,7 @@
                 text: root.subject_obj.teacher if root.subject_obj else ""
                 color: get_color_from_hex(root.style.text_color) if root.style else app.theme.DefaultColors.DEFAULT_BLACK
                 
-                # ZMIANA: To samo dla nazwiska prowadzącego
+                # same layout for teacher name
                 text_size: self.width, None
                 shorten: True
                 shorten_from: 'right'
@@ -105,9 +103,9 @@
         padding: dp(20)
         spacing: dp(15)
         
-        # Ciemnoszare tło całej aplikacji (jak na screenie poza niebieskim obszarem)
+        # app background
 
-        # Nagłówek
+        # header
         Label:
             text: app.translate("my_subjects_text", app.language)
             font_size: '24sp'
@@ -118,7 +116,7 @@
             halign: 'left'
             valign: 'middle'
 
-        # Niebieski kontener na kafelki
+        # tiles container
         BoxLayout:
             padding: dp(15)
             canvas.before:
@@ -129,16 +127,16 @@
                     size: self.size
                     radius: [10,]
 
-            # Siatka, która automatycznie układa kafelki od lewej do prawej
+            # tile grid
             ScrollView:
                 do_scroll_x: False
                 scroll_timeout: 0
                 scroll_distance: dp(5)
                 GridLayout:
                     id: grid_przedmiotow
-                    cols: 3 # Ilość kolumn (dostosuj do szerokości okna)
+                    cols: 3 # columns
                     spacing: dp(15)
                     
-                    # Ważne: to pozwala siatce rosnąć w dół, jeśli dodasz więcej kafelków
+                    # grow height when more tiles are added
                     size_hint_y: None
                     height: self.minimum_height

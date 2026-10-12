@@ -18,7 +18,6 @@ SUBJECT_ROW = {
     'current_colloquium_points': 10,
 }
 
-
 @pytest.fixture
 def mock_card():
     app = MagicMock()
@@ -34,32 +33,26 @@ def mock_card():
         card.update_texts()
         yield card
 
-
 def test_initial_values(mock_card):
     assert mock_card.get_total() == 15
     assert mock_card.max_points == 30
-
 
 def test_plus_minus_logic(mock_card):
     mock_card.change_pluses(1)
     assert mock_card.pluses_val == 6
     assert mock_card.get_total() == 16
 
-
 def test_cannot_have_negative_points(mock_card):
     mock_card.change_pluses(-100)
     assert mock_card.pluses_val >= 0
-
 
 def test_save_to_db(mock_card):
     mock_card.change_pluses(1)
     mock_card.repo.update_subject_progress.assert_called_with(1, 6, 10)
 
-
 def test_points_text_formatting(mock_card):
     expected_text = "Zdobyto 15 z 30 punktów (50.0%)"
     assert mock_card.points_text == expected_text
-
 
 def test_progress_card_from_subject_data():
     app = MagicMock()

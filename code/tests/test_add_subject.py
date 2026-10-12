@@ -58,10 +58,8 @@ def mock_screen(mock_app, mock_repo):
     screen.save_subject = AddSubjectScreen.save_subject.__get__(screen, AddSubjectScreen)
     return screen
 
-
 def _schedule_data(mock_screen):
     return mock_screen.repo.add_subject_with_schedule.call_args[0][0]
-
 
 def test_save_valid_data(mock_screen):
     mock_screen.save_subject()
@@ -140,13 +138,11 @@ def test_time_single_digit_hour_normalized(mock_screen):
     mock_screen.show_error_popup.assert_not_called()
     assert _schedule_data(mock_screen)['schedule'][0]['start_time'] == "08:30"
 
-
 def test_time_nine_oclock(mock_screen):
     mock_screen.ids.input_time.text = "9:00"
     mock_screen.save_subject()
     mock_screen.show_error_popup.assert_not_called()
     assert _schedule_data(mock_screen)['schedule'][0]['start_time'] == "09:00"
-
 
 @pytest.mark.parametrize("bad_time", ["9:0", "09:0"])
 def test_time_without_leading_zeros(mock_screen, bad_time):

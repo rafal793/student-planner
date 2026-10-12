@@ -6,7 +6,6 @@ from kivy.uix.image import Image
 CLICK_RESET_SECONDS = 0.6
 CLICKS_TO_CYCLE = 3
 
-
 class LogoTripleClick(ButtonBehavior, Image):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

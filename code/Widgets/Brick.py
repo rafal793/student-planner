@@ -6,9 +6,8 @@ from typing import Optional
 @dataclass(frozen=True)
 class LessonNote:
     id: str                # ID z bazy danych
-    content: str           # Treść notatki
+    content: str           # note text
     last_modified: str     # Timestamp
-
 
 @dataclass(frozen=True)
 class CalendarBrickData:

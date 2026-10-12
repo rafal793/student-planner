@@ -6,7 +6,6 @@ from Widgets.Brick import CalendarBrickData
 DEFAULT_EXAM_DURATION_MINUTES = 90
 CALENDAR_TIMED_EVENT_TYPES = frozenset({'egzamin', 'kolokwium'})
 
-
 def _date_in_term(day_date: date, term_start: Optional[str], term_end: Optional[str]) -> bool:
     if term_start:
         if day_date < date.fromisoformat(term_start):
@@ -16,10 +15,8 @@ def _date_in_term(day_date: date, term_start: Optional[str], term_end: Optional[
             return False
     return True
 
-
 def _subject_note_id(subject_id: int) -> str:
     return str(subject_id)
-
 
 def build_week_calendar_events(
     week_start: date,
@@ -80,11 +77,9 @@ def build_week_calendar_events(
 
     return events
 
-
 def _parse_event_datetime(date_time: str) -> tuple[date, str]:
     date_part, time_part = date_time.split(' ', 1)
     return date.fromisoformat(date_part), time_part[:5]
-
 
 def _map_event_type(raw_type: str) -> str:
     normalized = (raw_type or '').lower()
@@ -93,7 +88,6 @@ def _map_event_type(raw_type: str) -> str:
     if normalized in {'kolokwium', 'colloquium'}:
         return 'kolokwium'
     return normalized or 'zajęcia'
-
 
 def merge_same_time_overlays(
     events: list[CalendarBrickData],

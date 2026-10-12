@@ -5,7 +5,6 @@ from KivyWidgets.KivyBrickBackend import DashboardBrick
 
 from models.subject_data import SubjectData
 
-
 class SubjectGreen(DashboardBrick):
     pass
 class SubjectRed(DashboardBrick):
@@ -24,7 +23,7 @@ class MySubjectsScreen(Screen):
 
         rows = self.repo.get_all_subjects()
         
-        # 3. Pętla budująca kafelki
+        # build subject tiles
         for row in rows:
 
             przedmiot = SubjectData.create_from_db_dict(row)

@@ -1,4 +1,4 @@
-"""Screen registry — import and register app screens here."""
+"""Register app screens here."""
 
 KV_FILE_PATH = "views"
 

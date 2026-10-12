@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from typing import Iterable, Optional
 
-
 @dataclass
 class _EventPlacement:
     event: object
@@ -9,7 +8,6 @@ class _EventPlacement:
     end: int
     column: int
     max_columns: int = 1
-
 
 @dataclass(frozen=True)
 class CalendarTimeConfig:
@@ -44,7 +42,6 @@ class CalendarTimeConfig:
     def hour_labels(self) -> list[tuple[int, float]]:
         return [(hour, self.hour_y(hour)) for hour in range(self.start_hour, self.end_hour + 1)]
 
-
 @dataclass(frozen=True)
 class TimedEventLayout:
     event_id: str
@@ -53,11 +50,9 @@ class TimedEventLayout:
     x_fraction: float
     width_fraction: float
 
-
 def parse_time(time_str: str) -> int:
     hours, minutes = time_str.split(":")
     return int(hours) * 60 + int(minutes)
-
 
 def format_duration_label(duration_minutes: int) -> str:
     if duration_minutes % 60 == 0:
@@ -67,19 +62,15 @@ def format_duration_label(duration_minutes: int) -> str:
         return f"{int(hours)} h"
     return f"{hours:.1f} h".replace(".", ",")
 
-
 def format_event_info(start_time: str, duration_minutes: int) -> str:
     return f"{start_time} | {format_duration_label(duration_minutes)}"
-
 
 def event_end_minutes(start_time: str, duration_minutes: int) -> int:
     return parse_time(start_time) + duration_minutes
 
-
 def _event_layout_key(event) -> str:
     layout_key = getattr(event, 'layout_key', '')
     return layout_key or event.id
-
 
 def layout_timed_events(
     events: Iterable,

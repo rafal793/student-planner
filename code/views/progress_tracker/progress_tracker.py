@@ -5,7 +5,6 @@ from Widgets.progressBar import ProgressBar, ProgressBarStyle
 from KivyWidgets.kivyProgressBarBackend import KivyProgressBarBackend
 from models.subject_data import SubjectData
 
-
 class PointControlRow(BoxLayout):
     label_text = StringProperty("")
     value_text = StringProperty("0")
@@ -20,7 +19,6 @@ class PointControlRow(BoxLayout):
     def on_plus(self):
         if self.action_plus:
             self.action_plus()
-
 
 class ProgressCard(BoxLayout):
     title_text = StringProperty("")
@@ -122,7 +120,6 @@ class ProgressCard(BoxLayout):
             max=self.max_points,
             percent=percentage,
         )
-
 
 class ProgressTrackerScreen(Screen):
     repo = ObjectProperty(None)

@@ -7,7 +7,6 @@ from Widgets.progressBar import ProgressBar, ProgressBarStyle
 from KivyWidgets.kivyProgressBarBackend import KivyProgressBarBackend
 from models.subject_data import SubjectData
 
-
 class SubjectCard(BoxLayout):
     title = StringProperty('')
     teacher = StringProperty('')
@@ -68,7 +67,6 @@ class SubjectCard(BoxLayout):
             else colors.SUBJECT_TEXT_COLOR_DARK
         )
         return get_color_from_hex(hex_color)
-
 
 class RulesRepositoryScreen(Screen):
     repo = ObjectProperty(None)

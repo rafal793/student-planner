@@ -5,11 +5,9 @@
 MainLayout:
 
 <MainLayout@BoxLayout>:
-    orientation: 'vertical' # Układ góra-dół
+    orientation: 'vertical' # vertical layout
 
-    # ==========================================
-    # GÓRNY PASEK
-    # ==========================================
+    # top bar
     BoxLayout:
         size_hint_y: None
         height: dp(80)
@@ -21,7 +19,7 @@ MainLayout:
                 pos: self.pos
                 size: self.size
 
-        # Obszar Logo
+        # logo
         BoxLayout:
             size_hint_x: None
             width: dp(185)
@@ -32,13 +30,13 @@ MainLayout:
                 keep_ratio: False
                 size_hint: (1, 1)
 
-        # Środkowy tekst (Najbliższe...)
+        # next event label
         Label:
             text: app.translate("nearest", app.language) + " " + app.events()
             color: get_color_from_hex(app.theme.UiColors.TOP_BAR_TEXT_COLOR)
             bold: True
 
-        # Prawa strona
+        # right side
         BoxLayout:
             size_hint_x: None
             width: dp(180)
@@ -67,13 +65,11 @@ MainLayout:
                 height: dp(30)
                 on_release: app.change_language()
 
-    # ==========================================
-    # DOLNA CZĘŚĆ
-    # ==========================================
+    # below top bar
     BoxLayout:
         orientation: 'horizontal'
 
-        # --- LEWY PANEL ---
+        # left sidebar
         BoxLayout:
             orientation: 'vertical'
             size_hint_x: None
@@ -87,7 +83,7 @@ MainLayout:
                     pos: self.pos
                     size: self.size
 
-            # Przyciski nawigacyjne
+            # navigation
             StandardUiButton:
                 text: app.translate("start_calendar", app.language)
                 on_release: app.change_screen('calendar')
@@ -113,9 +109,9 @@ MainLayout:
                 on_release: app.change_screen('progress_tracker')
             
             
-            Widget: # spycha sesję na dół
+            Widget: # pushes session panel down
 
-            # Panel Sesji
+            # session countdown
             SessionPanel:
                 id: countdown_box
                 orientation: "vertical"
@@ -145,7 +141,7 @@ MainLayout:
                     valign: "middle"
                     text_size: self.size
 
-        # --- GŁÓWNY OBSZAR ROBOCZY ---
+        # main area
         ScreenManager:
             id: sm
             canvas.before:

@@ -14,7 +14,6 @@ SAMPLE_SUBJECT_ROW = {
     'note': '',
 }
 
-
 @pytest.fixture
 def mock_app():
     app = MagicMock()
@@ -27,13 +26,11 @@ def mock_app():
     app.theme.DefaultColors.DEFAULT_WHITE = '#ffffff'
     return app
 
-
 @pytest.fixture
 def mock_repo():
     repo = MagicMock()
     repo.get_all_subjects.return_value = []
     return repo
-
 
 @pytest.fixture
 def rules_screen(mock_app, mock_repo):
@@ -46,7 +43,6 @@ def rules_screen(mock_app, mock_repo):
         screen.ids['rules_container'] = MagicMock()
         return screen
 
-
 def test_populate_cards_calls_repo(rules_screen, mock_repo):
     mock_repo.get_all_subjects.return_value = [SAMPLE_SUBJECT_ROW]
 
@@ -57,7 +53,6 @@ def test_populate_cards_calls_repo(rules_screen, mock_repo):
     rules_screen.ids['rules_container'].clear_widgets.assert_called_once()
     mock_card.from_subject_data.assert_called_once()
     rules_screen.ids['rules_container'].add_widget.assert_called_once()
-
 
 def test_populate_cards_creates_one_card_per_subject(rules_screen, mock_repo):
     mock_repo.get_all_subjects.return_value = [
@@ -71,7 +66,6 @@ def test_populate_cards_creates_one_card_per_subject(rules_screen, mock_repo):
     assert mock_card.from_subject_data.call_count == 2
     assert rules_screen.ids['rules_container'].add_widget.call_count == 2
 
-
 def test_populate_cards_empty_list(rules_screen, mock_repo):
     mock_repo.get_all_subjects.return_value = []
 
@@ -80,7 +74,6 @@ def test_populate_cards_empty_list(rules_screen, mock_repo):
 
     mock_card.from_subject_data.assert_not_called()
     rules_screen.ids['rules_container'].add_widget.assert_not_called()
-
 
 def test_subject_card_from_subject_data_maps_fields(mock_app):
     from models.subject_data import SubjectData
@@ -98,7 +91,6 @@ def test_subject_card_from_subject_data_maps_fields(mock_app):
     assert card.current_absences == 8
     assert card.max_absences_count == 10
     assert card.app is mock_app
-
 
 def test_subject_card_from_subject_data_empty_optional_fields(mock_app):
     from models.subject_data import SubjectData
@@ -122,7 +114,6 @@ def test_subject_card_from_subject_data_empty_optional_fields(mock_app):
     assert card.absences == '0 / 0'
     assert card.current_absences == 0
     assert card.max_absences_count == 0
-
 
 def test_populate_cards_passes_mapped_subject_to_card(rules_screen, mock_repo, mock_app):
     mock_repo.get_all_subjects.return_value = [SAMPLE_SUBJECT_ROW]

@@ -2,7 +2,6 @@ from kivy.event import EventDispatcher
 from kivy.properties import StringProperty, ObjectProperty
 from style.palettes import PALETTES, DEFAULT_PALETTE_NAME
 
-
 class UiColorsGroup(EventDispatcher):
     MAIN_BG_COLOR = StringProperty("#2c2c2e")
     SECONDARY_BG_COLOR = StringProperty("#0b3d91")
@@ -43,7 +42,6 @@ class ButtonColorsGroup(EventDispatcher):
     STANDARD_UI_BUTTON_PRESSED_BG_COLOR = StringProperty("#1a3d5c")
     STANDARD_UI_BUTTON_PRESSED_TEXT_COLOR = StringProperty("#ffffff")
 
-
 class SubjectColorsGroup(EventDispatcher):
     SUBJECT_BG_COLOR_COMPLETED = StringProperty("#62c57b")
     SUBJECT_BG_COLOR_ATRISK = StringProperty("#f28b82")
@@ -52,9 +50,7 @@ class SubjectColorsGroup(EventDispatcher):
     SUBJECT_TEXT_COLOR_BRIGHT = StringProperty("#ffffff")
     SUBJECT_TEXT_COLOR_DARK = StringProperty("#000000")
 
-
     
-
 
 class WidgetsColorsGroup(EventDispatcher):
     FORM_TEXTINPUT_BG_COLOR = StringProperty("#322d2d") 
@@ -62,7 +58,6 @@ class WidgetsColorsGroup(EventDispatcher):
     # FORM_TEXTINPUT_BG_COLOR = StringProperty("#ffffff") 
     # FORM_TEXTINPUT_TEXT_COLOR = StringProperty("#000001")
     FORM_TEXTINPUT_FOCUS_BORDER = StringProperty("#ffffff")
-
 
     SCROLLBAR_COLOR_ACTIVE = StringProperty("#888888")
     SCROLLBAR_COLOR_INACTIVE = StringProperty("#666666")
@@ -75,7 +70,6 @@ class WidgetsColorsGroup(EventDispatcher):
     PROGRESSCARD_TEXT_COLOR = StringProperty("#000000")
     PROGRESSCARD_SECONDARY_TEXT_COLOR = StringProperty("#333333")
 
-
 class CalendarColorsGroup(EventDispatcher):
     LESSON_BG_COLOR = StringProperty("#86a6c1")
     LESSON_HOVER_BG_COLOR = StringProperty("#7092ad")
@@ -84,11 +78,9 @@ class CalendarColorsGroup(EventDispatcher):
     COLOQUIUM_BG_COLOR = StringProperty("#ffb74d")
     COLOQUIUM_HOVER_BG_COLOR = StringProperty("#ffa726")
 
-
 class DefaultColorsGroup(EventDispatcher):
     DEFAULT_WHITE = StringProperty("#ffffff")
     DEFAULT_BLACK = StringProperty("#000000")
-
 
 class ThemeManager(EventDispatcher):
     UiColors = ObjectProperty(UiColorsGroup())

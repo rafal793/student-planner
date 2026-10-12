@@ -2,7 +2,7 @@ import json
 
 from paths import resource_path, configure_kivy_resources
 
-# Importy używane tylko w plikach .kv — PyInstaller musi je widzieć przy budowaniu exe.
+# needed for .kv widgets when building with PyInstaller
 import Widgets.notifications  # noqa: F401
 import KivyWidgets.LogoTripleClick  # noqa: F401
 import KivyWidgets.SessionPanel  # noqa: F401
@@ -26,7 +26,6 @@ from Widgets.countdown import CountdownWidget, CountdownStyle, KivyCountdownBack
 from tests.create_default_values import DatabaseStarter
 
 from screenHandler import *
-
 
 class StudentPlannerApp(App):
 
@@ -131,7 +130,6 @@ class StudentPlannerApp(App):
         else:
             sorted_events = sorted(events_list, key=lambda e: e.get('date_time', ''))
             return sorted_events[0].get('title', '') + " " + sorted_events[0].get('date_time', '') + " " + self.translate(sorted_events[0].get('type', ''), self.language)
-
 
 if __name__ == "__main__":
 

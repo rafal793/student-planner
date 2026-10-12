@@ -4,7 +4,6 @@ from kivy.app import App
 from kivy.metrics import dp
 from Widgets.notificationMessages import build_notification_messages
 
-
 class NotificationPopup(Popup):
     def on_open(self):
         self.ids.notifications_container.clear_widgets()

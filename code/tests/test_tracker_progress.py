@@ -15,18 +15,15 @@ SUBJECT_ROW = {
     'current_colloquium_points': 10,
 }
 
-
 @pytest.fixture
 def mock_app():
     return MagicMock()
-
 
 @pytest.fixture
 def mock_repo():
     repo = MagicMock()
     repo.get_all_subjects.return_value = []
     return repo
-
 
 @pytest.fixture
 def tracker_screen(mock_app, mock_repo):
@@ -38,7 +35,6 @@ def tracker_screen(mock_app, mock_repo):
         screen.repo = mock_repo
         screen.ids['cards_container'] = MagicMock()
         return screen
-
 
 def test_load_cards_calls_repo(tracker_screen, mock_repo):
     mock_repo.get_all_subjects.return_value = [SUBJECT_ROW]
@@ -52,7 +48,6 @@ def test_load_cards_calls_repo(tracker_screen, mock_repo):
     mock_card.from_subject_data.assert_called_once()
     tracker_screen.ids['cards_container'].add_widget.assert_called_once()
 
-
 def test_load_cards_creates_one_card_per_subject(tracker_screen, mock_repo):
     mock_repo.get_all_subjects.return_value = [
         SUBJECT_ROW,
@@ -63,7 +58,6 @@ def test_load_cards_creates_one_card_per_subject(tracker_screen, mock_repo):
         tracker_screen.load_cards()
 
     assert mock_card.from_subject_data.call_count == 2
-
 
 def test_load_cards_empty_list(tracker_screen, mock_repo):
     with patch('views.progress_tracker.progress_tracker.ProgressCard') as mock_card:

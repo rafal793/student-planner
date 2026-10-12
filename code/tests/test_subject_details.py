@@ -3,7 +3,6 @@ from unittest.mock import MagicMock
 from models.subject_data import SubjectData
 from views.subject_details.subject_details import SubjectDetailsScreen
 
-
 @pytest.fixture
 def mock_app():
     app = MagicMock()
@@ -14,7 +13,6 @@ def mock_app():
     colors.SUBJECT_BG_COLOR_ATRISK = '#f28b82'
     colors.SUBJECT_BG_COLOR_FAILED = '#272724'
     return app
-
 
 @pytest.fixture
 def subject():
@@ -30,7 +28,6 @@ def subject():
         'max_colloquium_points': 20,
         'note': 'Notatka testowa',
     })
-
 
 @pytest.fixture
 def details_screen(mock_app, subject):
@@ -56,7 +53,6 @@ def details_screen(mock_app, subject):
 
     return screen
 
-
 def test_populate_form_uses_subject_data(details_screen, subject):
     details_screen._populate_form()
 
@@ -64,7 +60,6 @@ def test_populate_form_uses_subject_data(details_screen, subject):
     assert details_screen.ids['input_conditions'].text == subject.conditions
     assert details_screen.ids['input_max_pluses'].text == str(subject.max_pluses)
     assert details_screen.ids['input_max_colloquium_pluses'].text == str(subject.max_colloquium_pluses)
-
 
 def test_sync_status_buttons_resets_all_then_sets_active(details_screen):
     details_screen.ids['btn_status_completed'].state = 'down'
@@ -76,12 +71,10 @@ def test_sync_status_buttons_resets_all_then_sets_active(details_screen):
     assert details_screen.ids['btn_status_atrisk'].state == 'normal'
     assert details_screen.ids['btn_status_inprogress'].state == 'down'
 
-
 def test_get_status_text_rgba_uses_theme(details_screen, mock_app):
     rgba = details_screen.get_status_text_rgba('completed')
 
     assert tuple(rgba) == (98 / 255, 197 / 255, 123 / 255, 1.0)
-
 
 def test_change_status_syncs_buttons(details_screen, subject):
     details_screen.change_status('completed')
@@ -89,7 +82,6 @@ def test_change_status_syncs_buttons(details_screen, subject):
     assert subject.status == 'completed'
     assert details_screen.ids['btn_status_completed'].state == 'down'
     assert details_screen.ids['btn_status_inprogress'].state == 'normal'
-
 
 def test_delete_subject_removes_and_navigates(details_screen, subject):
     popup = MagicMock()
@@ -99,7 +91,6 @@ def test_delete_subject_removes_and_navigates(details_screen, subject):
     popup.dismiss.assert_called_once()
     assert details_screen.selectedSubject is None
     details_screen.app.change_screen.assert_called_once_with('mySubjects')
-
 
 def test_delete_subject_no_op_without_selection(details_screen):
     details_screen.selectedSubject = None

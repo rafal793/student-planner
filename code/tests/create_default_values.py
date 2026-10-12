@@ -166,7 +166,6 @@ subjects = [
     },
 ]
 
-
 class DatabaseStarter:
     def __init__(self, repo):
         self.repo = repo
@@ -221,7 +220,7 @@ class DatabaseStarter:
                 )
 
     def refresh_demo_dates(self):
-        """Przesuwa daty przedmiotów demo względem dziś, żeby kalendarz zawsze pokazywał kafelki."""
+        """Move demo subject dates relative to today so the calendar still shows events."""
         by_name = {row['name']: row for row in self.repo.get_all_subjects()}
         conn = self.repo.get_db_connection()
 
@@ -243,7 +242,6 @@ class DatabaseStarter:
                 )
 
         conn.commit()
-
 
 if __name__ == '__main__':
     import sqlite3

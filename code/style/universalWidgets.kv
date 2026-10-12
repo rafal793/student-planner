@@ -7,7 +7,7 @@
     size: dp(150), dp(75)
     
     canvas.before:
-        # Tło przycisku
+        # button background
         Color:
             rgba: root.style.get_bg_color(root.btn_state) if root.style else [0.2, 0.2, 0.2, 1]
         RoundedRectangle:
@@ -15,7 +15,7 @@
             size: self.size
             radius: [root.style.border_radius] if root.style else [8]
 
-        # Obramówka (Bezpieczna, z zabezpieczeniem przed awarią 0px)
+        # border (skip if width is 0)
         Color:
             rgba: root.style.get_border_color(root.btn_state) if root.style else [0, 0, 0, 0]
         Line:
@@ -65,9 +65,7 @@
             width: dp(2)
             rounded_rectangle: [self.x, self.y, self.width, self.height, dp(6)]
 
-# =========================================================================
-# 2. SEKCJA BRICK (Kafelki kalendarza / przedmiotów)
-# =========================================================================
+# brick / tile widgets
 <BrickWidget>:
     background_normal: ''
     background_color: (0, 0, 0, 0)
@@ -85,7 +83,7 @@
             size: self.size
             radius: [root.style.border_radius] if root.style else [20]
             
-        # Opcjonalna ramka wokół kafelka
+        # optional tile border
         Color:
             rgba: root.style.get_border_color(root.btn_state) if root.style else [0, 0, 0, 0]
         Line:
@@ -119,9 +117,7 @@
         valign: 'bottom'
         text_size: self.size
 
-# =========================================================================
-# 3. KONKRETNE IMPLEMENTACJE STYLÓW
-# =========================================================================
+# concrete styles
 
 <StandardUiButton@CustomButtonWidget>:
     style: ButtonStyle(bg_color=app.theme.ButtonColors.STANDARD_UI_BUTTON_BG_COLOR, text_color=app.theme.ButtonColors.STANDARD_UI_BUTTON_TEXT_COLOR, hover_bg_color=app.theme.ButtonColors.STANDARD_UI_BUTTON_HOVER_BG_COLOR, pressed_bg_color=app.theme.ButtonColors.STANDARD_UI_BUTTON_PRESSED_BG_COLOR, pressed_text_color=app.theme.ButtonColors.STANDARD_UI_BUTTON_PRESSED_TEXT_COLOR, border_radius=9)
@@ -135,9 +131,7 @@
 <PlusButton@CustomButtonWidget>:
     style: ButtonStyle(bg_color=app.theme.ButtonColors.SUBJECT_PLUS_BG_COLOR, text_color=app.theme.ButtonColors.SUBJECT_PLUS_TEXT_COLOR, border_radius=8)
 
-# =========================================================================
-# 4. POPUP POWIADOMIEN (Dzwonek)
-# =========================================================================
+# notifications popup
 <NotificationPopup>:
     title: app.translate("popup_notifications", app.language) if app else "Powiadomienia"
     title_align: 'center'
@@ -165,7 +159,6 @@
             size_hint_x: 1
             on_release: root.dismiss()
 
-
 <IconButton@ButtonBehavior+Image>:
     color: (0.7, 0.7, 0.7, 1) if self.state == 'down' else (1, 1, 1, 1)
 
@@ -173,14 +166,14 @@
     size_hint: None, None
     size: dp(40), dp(40) 
     canvas:
-        # Rysuje białą ramkę checkboxa
+        # checkbox border
         Color:
             rgba: 1, 1, 1, 1
         Line:
             width: dp(1.5) 
             rectangle: (self.center_x - dp(9), self.center_y - dp(9), dp(18), dp(18)) 
         
-        # Rysuje wypełniony biały kwadracik w środku, jeśli jest zaznaczony (self.active)
+        # filled when checked
         Color:
             rgba: (1, 1, 1, 1) if self.active else (0, 0, 0, 0)
         Rectangle:

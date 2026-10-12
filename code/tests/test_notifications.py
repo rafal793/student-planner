@@ -3,7 +3,6 @@ from Widgets.notificationMessages import (
     subjects_at_absence_limit,
 )
 
-
 def _translate(key: str) -> str:
     translations = {
         'notification_absence_limit': '{subject}: limit ({current}/{maximum})',
@@ -11,7 +10,6 @@ def _translate(key: str) -> str:
         'notification_upcoming_event_no_type': '{date_time} | {title}',
     }
     return translations[key]
-
 
 def test_subjects_at_absence_limit_filters_and_sorts():
     subjects = [
@@ -24,7 +22,6 @@ def test_subjects_at_absence_limit_filters_and_sorts():
     result = subjects_at_absence_limit(subjects)
 
     assert [item['name'] for item in result] == ['A', 'Z']
-
 
 def test_build_notification_messages_includes_absence_and_events():
     subjects = [
@@ -39,7 +36,6 @@ def test_build_notification_messages_includes_absence_and_events():
     assert len(messages) == 2
     assert messages[0] == 'Fizyka: limit (2/2)'
     assert messages[1] == '2026-06-10 10:00 | Kolokwium (Kolokwium)'
-
 
 def test_build_notification_messages_empty():
     assert build_notification_messages([], [], _translate) == []

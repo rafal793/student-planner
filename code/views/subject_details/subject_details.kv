@@ -2,7 +2,6 @@
 #:import ButtonStyle style.ButtonStyle.ButtonStyle
 #:import ButtonState style.ButtonState.ButtonState
 
-
 <BackButton@CustomToggleButtonWidget>:
     style: ButtonStyle(bg_color=app.theme.ButtonColors.TOP_BAR_BG_COLOR, text_color=app.theme.ButtonColors.TOP_BAR_TEXT_COLOR, border_radius=8)
     size_hint: 1, 1
@@ -28,16 +27,13 @@
     size_hint_y: None
     height: dp(40)
 
-# ========================================================
-# 3. GŁÓWNY WIDOK EKRANU
-# ========================================================
 <SubjectDetailsScreen>:
     BoxLayout:
         orientation: 'vertical'
         padding: dp(20)
         spacing: dp(20)
 
-        # --- GÓRNY PASEK ---
+        # top bar
         BoxLayout:
             orientation: 'vertical'
             size_hint_y: None
@@ -55,11 +51,11 @@
                 pos_hint: {'x': 0}
                 on_release: app.change_screen('mySubjects')
 
-        # --- GŁÓWNA ZAWARTOŚĆ ---
+        # main content
         BoxLayout:
             spacing: dp(20)
             
-            # --- LEWA KOLUMNA ---
+            # left column
             ScrollView:
                 do_scroll_x: False
                 size_hint_x: 0.5
@@ -74,7 +70,7 @@
                     height: self.minimum_height
                     padding: [0, 0, dp(10), 0]
                     
-                    # 1. PANEL STATUSU
+                    # status
                     BoxLayout:
                         orientation: 'vertical'
                         size_hint_y: None
@@ -125,7 +121,7 @@
                                 text: app.translate('my_subject_failed', app.language)
                                 on_release: root.change_status('failed')
 
-                    # 2. PANEL NIEOBECNOŚCI
+                    # absences
                     BoxLayout:
                         orientation: 'vertical'
                         size_hint_y: None
@@ -163,7 +159,7 @@
                                 on_release: root.change_absences(1)
                             Widget:
 
-                    # 3. PANEL EDYCJI
+                    # edit subject
                     BoxLayout:
                         orientation: 'vertical'
                         size_hint_y: None
@@ -181,7 +177,7 @@
                         LabelMain:
                             text: app.translate('edit_subject' , app.language)
                             
-                        # --- TUTAJ WCHODZI KLASA SECONDARY ---
+                        
                         LabelSecondary:
                             text: app.translate('subject_name' , app.language)
                         RoundedInput:
@@ -217,7 +213,7 @@
                             
                         Widget: 
 
-            # --- PRAWA KOLUMNA (Notatka) ---
+            # right column (note)
             BoxLayout:
                 orientation: 'vertical'
                 padding: dp(15)
@@ -237,7 +233,7 @@
                     id: input_note
                     center_text: False
                     multiline: True
-                    size_hint_y: 1   # <--- 1. KLUCZ! "Zajmij całe pozostałe miejsce rodzica"
+                    size_hint_y: 1   # fill remaining height
                     padding: dp(15)
                     text: (root.selectedSubject.note or "") if root.selectedSubject else ""
                     

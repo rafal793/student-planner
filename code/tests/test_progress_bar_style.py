@@ -4,7 +4,6 @@ from unittest.mock import MagicMock, patch
 from models.subject_data import SubjectData
 from Widgets.progressBar import ProgressBarStyle
 
-
 def test_progress_bar_style_inverted_colors():
     style = ProgressBarStyle(
         bg_color=(0.2, 0.2, 0.2, 1),
@@ -20,7 +19,6 @@ def test_progress_bar_style_inverted_colors():
     assert style.resolve_fill_color(50, 100) == (1, 1, 0, 1)
     assert style.resolve_fill_color(80, 100) == (0, 1, 0, 1)
 
-
 def test_progress_bar_style_normal_colors():
     style = ProgressBarStyle(
         bg_color=(0.2, 0.2, 0.2, 1),
@@ -33,7 +31,6 @@ def test_progress_bar_style_normal_colors():
 
     assert style.resolve_fill_color(10, 100) == (0, 1, 0, 1)
     assert style.resolve_fill_color(80, 100) == (1, 0, 0, 1)
-
 
 def test_kivy_progress_bar_backend_honors_contract():
     from KivyWidgets.kivyProgressBarBackend import KivyProgressBarBackend

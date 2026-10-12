@@ -6,16 +6,13 @@
     halign: 'left'
     valign: 'middle'
 
-# ========================================================
-# WIDOK DODAWANIA PRZEDMIOTU
-# ========================================================
 <AddSubjectScreen>:
     BoxLayout:
         orientation: 'vertical'
         padding: dp(20)
         spacing: dp(20)
         
-        # Tło ekranu podpięte pod motyw
+        # screen background from theme
         canvas.before:
             Color:
                 rgba: get_color_from_hex(app.theme.UiColors.MAIN_BG_COLOR)
@@ -23,7 +20,7 @@
                 pos: self.pos
                 size: self.size
 
-        # --- GÓRNY PASEK ---
+        # top bar
         BoxLayout:
             orientation: 'vertical'
             size_hint_y: None
@@ -34,7 +31,7 @@
                 text: app.translate("add_subject", app.language)
                 font_size: '28sp'
 
-        # --- GŁÓWNA ZAWARTOŚĆ ---
+        # main content
         ScrollView:
             id: main_scroll  # <--- 1. DODANO ID DLA SCROLLVIEW
             do_scroll_x: False
@@ -43,14 +40,14 @@
             bar_color: get_color_from_hex(app.theme.WidgetColors.SCROLLBAR_COLOR_ACTIVE)
             bar_inactive_color: get_color_from_hex(app.theme.WidgetColors.SCROLLBAR_COLOR_INACTIVE)
             
-            # Główny kontener pozycjonujący
+            # form wrapper
             BoxLayout:
                 orientation: 'vertical'
                 size_hint_y: None
-                # MAGIA SCROLLA: Wysokość dopasowana do treści, ale minimum taka jak ekran
+                # scroll height follows content, at least full screen
                 height: max(self.minimum_height, main_scroll.height)
                 
-                # Twój główny, niebieski panel z formularzem
+                # form panel
                 BoxLayout:
                     orientation: 'vertical'
                     size_hint_y: None
@@ -65,9 +62,7 @@
                             size: self.size
                             radius: [dp(12)]
 
-                    # ==========================================
-                    # RZĄD 1: Przedmiot | Prowadzący 
-                    # ==========================================
+                    # row: name / teacher
                     BoxLayout:
                         orientation: 'horizontal'
                         size_hint_y: None
@@ -96,9 +91,7 @@
                                 id: input_teacher
                                 hint_text: app.translate("hint_teacher", app.language)
 
-                    # ==========================================
-                    # RZĄD 2: Warunki zaliczenia
-                    # ==========================================
+                    # row: grading rules
                     BoxLayout:
                         orientation: 'vertical'
                         size_hint_y: None
@@ -116,9 +109,7 @@
                             size_hint_y: None
                             height: dp(80)
 
-                    # ==========================================
-                    # RZĄD 3: Nieobecności | Plusy | Kolokwia
-                    # ==========================================
+                    # row: absences / pluses / colloquium points
                     BoxLayout:
                         orientation: 'horizontal'
                         size_hint_y: None
@@ -161,9 +152,7 @@
                                 hint_text: app.translate("hint_100", app.language)
                                 input_filter: 'int'
 
-                    # ==========================================
-                    # RZĄD 4: Godzina startu | Czas trwania
-                    # ==========================================
+                    # row: start time / duration
                     BoxLayout:
                         orientation: 'horizontal'
                         size_hint_y: None
@@ -192,9 +181,7 @@
                                 id: input_duration
                                 hint_text: app.translate("hint_duration_15", app.language)
 
-                    # ==========================================
-                    # RZĄD 5: Początek zajęć | Koniec zajęć
-                    # ==========================================
+                    # row: term start / end
                     BoxLayout:
                         orientation: 'horizontal'
                         size_hint_y: None
@@ -243,9 +230,7 @@
                                     width: dp(35)
                                     on_release: root.open_calendar('end')
 
-                    # ==========================================
-                    # RZĄD 6: Dni zajęć
-                    # ==========================================
+                    # row: weekdays
                     BoxLayout:
                         orientation: 'vertical'
                         size_hint_y: None
@@ -334,9 +319,7 @@
                         size_hint_y: None
                         height: dp(10)
 
-                    # ==========================================
-                    # RZĄD 7: Przycisk Zapisu
-                    # ==========================================
+                    # save button
                     StandardUiButton:
                         text: app.translate("btn_save_subject", app.language)
                         size_hint: None, None
