@@ -38,31 +38,31 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" uid="9cf3dbccc91d4c4ab3b07136c5e1d40f" name="Analiza wymagań projektu" meeting="false" start="2026-04-24" duration="4" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
-        <task id="21" uid="6d207784ffb24d1cae48202e9826ec9e" name="Zatwierdzenie tematu projektu" meeting="true" start="2026-04-27" duration="0" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
-        <task id="10" uid="62de814f83c2412c9b88a96adb4256d8" name="Podział obowiązków i ustalenie zakresu prac" meeting="false" start="2026-04-27" duration="2" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
-        <task id="2" uid="77acd507cacf436b8fd2401aa201f2b2" name="Zapoznanie się z technologiami" meeting="false" start="2026-04-28" duration="7" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
-        <task id="3" uid="4a68508a4cfc4637a69110df0ada7155" name="Projekt UI aplikacji" meeting="false" start="2026-05-05" duration="4" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
-        <task id="22" uid="d4214f7d41044c35ac5f35b0130419a3" name="Gotowy projekt UI" meeting="true" start="2026-05-08" duration="0" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
-        <task id="4" uid="672721757bd74b169bea7f1eb8e8719f" name="Opinia UX" meeting="false" start="2026-05-09" duration="3" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
-        <task id="5" uid="32201693182841daaa812c43ce31f3d2" name="Szkielet aplikacji" meeting="false" start="2026-05-11" duration="4" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
-        <task id="23" uid="f9b3a21abcdd4c78b8911adcecc50961" name="Gotowy szkielet aplikacji" meeting="true" start="2026-05-14" duration="0" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
-        <task id="6" uid="5421fa9a48ab4788a5023d22da6fac34" name="Dodawanie przedmiotów i konfiguracja" meeting="false" start="2026-05-15" duration="8" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
-        <task id="7" uid="50a2455594e245a6aabeb7425e577dbd" name="Kalendarz i widok planu zajęć" meeting="false" start="2026-05-21" duration="9" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
-        <task id="8" uid="fd20f50d354e4e26b3256d1c6cb57564" name="Widok pojedynczego przedmiotu" meeting="false" start="2026-05-22" duration="8" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
-        <task id="9" uid="ca799888627b47cabaedffef4fceec45" name="Licznik nieobecności" meeting="false" start="2026-05-26" duration="5" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
-        <task id="11" uid="0b0ad7da020640a08b5697b36e1f4de0" name="Repozytorium zasad zaliczenia" meeting="false" start="2026-05-26" duration="6" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
-        <task id="12" uid="3e48892851044305b0e784fa1cea4a4c" name="Tracker progresu" meeting="false" start="2026-05-29" duration="5" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
-        <task id="13" uid="ba0f42fdd38045928f4d49dcc21834ff" name="Powiadomienia" meeting="false" start="2026-06-01" duration="3" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
-        <task id="14" uid="4a0a6e613d674d65beaf6d96822c08dc" name="Zmiana języka PL/ANG" meeting="false" start="2026-06-02" duration="2" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
-        <task id="24" uid="e7bfe2dd50fd4241a77bf3e021deaec7" name="Zakończenie głównej implementacji" meeting="true" start="2026-06-03" duration="0" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
-        <task id="15" uid="2a07582514264d6599a4d260b0e138ba" name="Integracja modułów" meeting="false" start="2026-06-03" duration="2" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
-        <task id="16" uid="c970d729daaa4bc3abec5c3f00e0ca68" name="Testowanie aplikacji" meeting="false" start="2026-06-04" duration="4" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
-        <task id="25" uid="c3ca71a7d4e04428a722ecb9c8fbb3b0" name="Zakończenie testowania" meeting="true" start="2026-06-07" duration="0" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
-        <task id="17" uid="3f92bc8ec74b45109b68c947dc079548" name="Poprawki po testach" meeting="false" start="2026-06-07" duration="2" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
-        <task id="18" uid="02fb1842f5b7481a813dbe226f753c69" name="Finalizacja dokumentacji projektu" meeting="false" start="2026-06-08" duration="2" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
-        <task id="26" uid="08162caec5ee4e6a81b207244ec51fe5" name="Finalna wersja projektu" meeting="true" start="2026-06-10" duration="0" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
-        <task id="19" uid="483f19426c3e473f90177ccfcf221583" name="Oddanie projektu" meeting="false" start="2026-06-10" duration="1" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
+        <task id="0" uid="9cf3dbccc91d4c4ab3b07136c5e1d40f" name="Project requirements analysis" meeting="false" start="2026-04-24" duration="4" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
+        <task id="21" uid="6d207784ffb24d1cae48202e9826ec9e" name="Project topic approval" meeting="true" start="2026-04-27" duration="0" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
+        <task id="10" uid="62de814f83c2412c9b88a96adb4256d8" name="Responsibility split and scope definition" meeting="false" start="2026-04-27" duration="2" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
+        <task id="2" uid="77acd507cacf436b8fd2401aa201f2b2" name="Getting familiar with technologies" meeting="false" start="2026-04-28" duration="7" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
+        <task id="3" uid="4a68508a4cfc4637a69110df0ada7155" name="Application UI design" meeting="false" start="2026-05-05" duration="4" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
+        <task id="22" uid="d4214f7d41044c35ac5f35b0130419a3" name="Ready UI design" meeting="true" start="2026-05-08" duration="0" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
+        <task id="4" uid="672721757bd74b169bea7f1eb8e8719f" name="UX review" meeting="false" start="2026-05-09" duration="3" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
+        <task id="5" uid="32201693182841daaa812c43ce31f3d2" name="Application skeleton" meeting="false" start="2026-05-11" duration="4" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
+        <task id="23" uid="f9b3a21abcdd4c78b8911adcecc50961" name="Ready application skeleton" meeting="true" start="2026-05-14" duration="0" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
+        <task id="6" uid="5421fa9a48ab4788a5023d22da6fac34" name="Adding subjects and configuration" meeting="false" start="2026-05-15" duration="8" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
+        <task id="7" uid="50a2455594e245a6aabeb7425e577dbd" name="Calendar and class schedule view" meeting="false" start="2026-05-21" duration="9" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
+        <task id="8" uid="fd20f50d354e4e26b3256d1c6cb57564" name="Single subject view" meeting="false" start="2026-05-22" duration="8" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
+        <task id="9" uid="ca799888627b47cabaedffef4fceec45" name="Absence counter" meeting="false" start="2026-05-26" duration="5" complete="0" thirdDate="2026-06-11" thirdDate-constraint="0" expand="true"/>
+        <task id="11" uid="0b0ad7da020640a08b5697b36e1f4de0" name="Grading rules repository" meeting="false" start="2026-05-26" duration="6" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
+        <task id="12" uid="3e48892851044305b0e784fa1cea4a4c" name="Progress tracker" meeting="false" start="2026-05-29" duration="5" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
+        <task id="13" uid="ba0f42fdd38045928f4d49dcc21834ff" name="Notifications" meeting="false" start="2026-06-01" duration="3" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
+        <task id="14" uid="4a0a6e613d674d65beaf6d96822c08dc" name="Language switch PL/ENG" meeting="false" start="2026-06-02" duration="2" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
+        <task id="24" uid="e7bfe2dd50fd4241a77bf3e021deaec7" name="Main implementation completion" meeting="true" start="2026-06-03" duration="0" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
+        <task id="15" uid="2a07582514264d6599a4d260b0e138ba" name="Module integration" meeting="false" start="2026-06-03" duration="2" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
+        <task id="16" uid="c970d729daaa4bc3abec5c3f00e0ca68" name="Application testing" meeting="false" start="2026-06-04" duration="4" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
+        <task id="25" uid="c3ca71a7d4e04428a722ecb9c8fbb3b0" name="Testing completion" meeting="true" start="2026-06-07" duration="0" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
+        <task id="17" uid="3f92bc8ec74b45109b68c947dc079548" name="Fixes after tests" meeting="false" start="2026-06-07" duration="2" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
+        <task id="18" uid="02fb1842f5b7481a813dbe226f753c69" name="Finalization of project documentation" meeting="false" start="2026-06-08" duration="2" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
+        <task id="26" uid="08162caec5ee4e6a81b207244ec51fe5" name="Final project version" meeting="true" start="2026-06-10" duration="0" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
+        <task id="19" uid="483f19426c3e473f90177ccfcf221583" name="Project submission" meeting="false" start="2026-06-10" duration="1" complete="0" thirdDate="2026-04-02" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources/>
     <allocations/>

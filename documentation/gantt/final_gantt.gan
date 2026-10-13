@@ -38,63 +38,63 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="47" uid="8d75cd96a22146f1873fc40fd567b996" name="Rozpoczęcie projektu" meeting="true" start="2026-05-01" duration="0" complete="0" thirdDate="2026-05-15" thirdDate-constraint="0" expand="true"/>
-        <task id="0" uid="022b10670f8b4193af5bfcdd4d9ee7a1" name="Analiza i planowanie" meeting="false" start="2026-05-01" duration="8" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="false">
-            <task id="36" uid="df87b1adbc2447d982310ce04c0e798d" name="Spotkanie projektowe" meeting="false" start="2026-05-01" duration="1" complete="0" expand="true"/>
-            <task id="10" uid="2fb88132d19a4b9bb5502b61414f9fd5" name="Podział obowiązków zespołu" meeting="false" start="2026-05-12" duration="1" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="11" uid="409f372e74744a2dbdff49d4cac10f17" name="Przygotowanie harmonogramu projektu" meeting="false" start="2026-05-11" duration="1" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="8" uid="18b33050ae054360958d441794675feb" name="Projekt bazy danych" meeting="false" start="2026-05-11" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="7" uid="163d3f68f10c4521be619dda13e274d7" name="Projekt architektury systemu" meeting="false" start="2026-05-07" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="6" uid="30a76dd3b5934045b2b81844e3ec0d07" name="Analiza wymagań" meeting="false" start="2026-05-05" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+        <task id="47" uid="8d75cd96a22146f1873fc40fd567b996" name="Project start" meeting="true" start="2026-05-01" duration="0" complete="0" thirdDate="2026-05-15" thirdDate-constraint="0" expand="true"/>
+        <task id="0" uid="022b10670f8b4193af5bfcdd4d9ee7a1" name="Analysis and planning" meeting="false" start="2026-05-01" duration="8" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="false">
+            <task id="36" uid="df87b1adbc2447d982310ce04c0e798d" name="Project meeting" meeting="false" start="2026-05-01" duration="1" complete="0" expand="true"/>
+            <task id="10" uid="2fb88132d19a4b9bb5502b61414f9fd5" name="Team responsibility split" meeting="false" start="2026-05-12" duration="1" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="11" uid="409f372e74744a2dbdff49d4cac10f17" name="Project schedule preparation" meeting="false" start="2026-05-11" duration="1" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="8" uid="18b33050ae054360958d441794675feb" name="Database design" meeting="false" start="2026-05-11" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="7" uid="163d3f68f10c4521be619dda13e274d7" name="System architecture design" meeting="false" start="2026-05-07" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="6" uid="30a76dd3b5934045b2b81844e3ec0d07" name="Requirements analysis" meeting="false" start="2026-05-05" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="48" uid="dbc3ddb4be1e4af8857b17e6159b1d93" name="Zakończenie etapu analizy" meeting="true" start="2026-05-15" duration="0" complete="0" thirdDate="2026-05-15" thirdDate-constraint="0" expand="true"/>
-        <task id="1" uid="35d414888be5455fbc65c033a81d1a6c" name="Projektowanie systemu" meeting="false" start="2026-05-12" duration="6" complete="0" expand="false">
-            <task id="37" uid="1c70f02aa6054f3aa14d79048e4ab950" name="Diagram przypadkow użycia" meeting="false" start="2026-05-15" duration="3" complete="0" thirdDate="2026-04-29" thirdDate-constraint="0" expand="true"/>
-            <task id="38" uid="2d0f805fe6314aafa51a48f6f420155a" name="Diagram klas (wersja wstępna)" meeting="false" start="2026-05-18" duration="2" complete="0" thirdDate="2026-04-29" thirdDate-constraint="0" expand="true"/>
-            <task id="17" uid="508ffa3a60c440f080ee4db48e0113cd" name="Projekt modułu kalendarza" meeting="false" start="2026-05-12" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="16" uid="16abf0e4590e4692afcf6513bbd6bf2a" name="Projekt modułu przedmiotów" meeting="false" start="2026-05-13" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="15" uid="1c39f6b91a3e411283097bf56e4498b4" name="Projekt modułu egzaminów i kolokwiów" meeting="false" start="2026-05-14" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="14" uid="020b479d37bf43f48f08e9f29b5a984b" name="Projekt repozytorium zasad" meeting="false" start="2026-05-15" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="13" uid="77956b2a3f174cb08743ed38cf8e9711" name="Projekt systemu powiadomień" meeting="false" start="2026-05-18" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="12" uid="1ad6007b02474d8ab4db5c528e32f061" name="Projekt interfejsu użytkownika" meeting="false" start="2026-05-18" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+        <task id="48" uid="dbc3ddb4be1e4af8857b17e6159b1d93" name="Analysis stage completion" meeting="true" start="2026-05-15" duration="0" complete="0" thirdDate="2026-05-15" thirdDate-constraint="0" expand="true"/>
+        <task id="1" uid="35d414888be5455fbc65c033a81d1a6c" name="System design" meeting="false" start="2026-05-12" duration="6" complete="0" expand="false">
+            <task id="37" uid="1c70f02aa6054f3aa14d79048e4ab950" name="Use case diagram" meeting="false" start="2026-05-15" duration="3" complete="0" thirdDate="2026-04-29" thirdDate-constraint="0" expand="true"/>
+            <task id="38" uid="2d0f805fe6314aafa51a48f6f420155a" name="Class diagram (draft version)" meeting="false" start="2026-05-18" duration="2" complete="0" thirdDate="2026-04-29" thirdDate-constraint="0" expand="true"/>
+            <task id="17" uid="508ffa3a60c440f080ee4db48e0113cd" name="Calendar module design" meeting="false" start="2026-05-12" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="16" uid="16abf0e4590e4692afcf6513bbd6bf2a" name="Subjects module design" meeting="false" start="2026-05-13" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="15" uid="1c39f6b91a3e411283097bf56e4498b4" name="Exams and colloquiums module design" meeting="false" start="2026-05-14" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="14" uid="020b479d37bf43f48f08e9f29b5a984b" name="Rules repository design" meeting="false" start="2026-05-15" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="13" uid="77956b2a3f174cb08743ed38cf8e9711" name="Notification system design" meeting="false" start="2026-05-18" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="12" uid="1ad6007b02474d8ab4db5c528e32f061" name="User interface design" meeting="false" start="2026-05-18" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="49" uid="eef73932de2d461eb5ce9676530c5762" name="Zakończenie etapu projektowania" meeting="true" start="2026-05-20" duration="0" complete="0" thirdDate="2026-05-15" thirdDate-constraint="0" expand="true"/>
-        <task id="2" uid="a8cab3a0996f46439cf0791d59108f31" name="Implementacja komponentów" meeting="false" start="2026-05-19" duration="5" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="false">
-            <task id="23" uid="2f62a388f2aa42bdaea3769fdf3550bc" name="Implementacja DatePicker" meeting="false" start="2026-05-19" duration="4" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="22" uid="d97cf77fd1d6483194bb13906aad53bb" name="Implementacja ProgressBar" meeting="false" start="2026-05-19" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="21" uid="1f9fc5a759c4407a917e0a05575d188a" name="Implementacja Countdown" meeting="false" start="2026-05-20" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="20" uid="0cbcbd28642445c7addb53a0a6ce9040" name="Implementacja przycisków" meeting="false" start="2026-05-20" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="19" uid="737beedf81fe459dbd2a3c3e7205b113" name="Implementacja kafelków kalendarza" meeting="false" start="2026-05-21" duration="3" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="18" uid="dbb7153394ea41279ac451155d863744" name="Implementacja bazy danych" meeting="false" start="2026-05-19" duration="4" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+        <task id="49" uid="eef73932de2d461eb5ce9676530c5762" name="Design stage completion" meeting="true" start="2026-05-20" duration="0" complete="0" thirdDate="2026-05-15" thirdDate-constraint="0" expand="true"/>
+        <task id="2" uid="a8cab3a0996f46439cf0791d59108f31" name="Components implementation" meeting="false" start="2026-05-19" duration="5" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="false">
+            <task id="23" uid="2f62a388f2aa42bdaea3769fdf3550bc" name="DatePicker implementation" meeting="false" start="2026-05-19" duration="4" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="22" uid="d97cf77fd1d6483194bb13906aad53bb" name="ProgressBar implementation" meeting="false" start="2026-05-19" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="21" uid="1f9fc5a759c4407a917e0a05575d188a" name="Countdown implementation" meeting="false" start="2026-05-20" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="20" uid="0cbcbd28642445c7addb53a0a6ce9040" name="Buttons implementation" meeting="false" start="2026-05-20" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="19" uid="737beedf81fe459dbd2a3c3e7205b113" name="Calendar tiles implementation" meeting="false" start="2026-05-21" duration="3" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="18" uid="dbb7153394ea41279ac451155d863744" name="Database implementation" meeting="false" start="2026-05-19" duration="4" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="50" uid="0890692866024b81bc519b69c4f97a36" name="Zakończenie implementacji komponentów" meeting="true" start="2026-05-25" duration="0" complete="0" thirdDate="2026-05-15" thirdDate-constraint="0" expand="true"/>
-        <task id="3" uid="5eb6a9fe930b40b1a99972a28cb132f0" name="Implementacja modułów" meeting="false" start="2026-05-21" duration="9" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="false">
-            <task id="30" uid="62e8119f0e4e413d81b5f4cacc978b34" name="Implementacja kalendarza" meeting="false" start="2026-05-21" duration="7" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="29" uid="eeadc3b1b1a84f74a6c8b0d85c071a3e" name="Implementacja strony głównej" meeting="false" start="2026-05-22" duration="4" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="28" uid="41682bc9771c479688c4769065d967f1" name="Implementacja modułu Moje przedmioty" meeting="false" start="2026-05-25" duration="4" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="27" uid="84baf9732d4c4663b224f095950a283a" name="Implementacja modułu Dodaj przedmiot" meeting="false" start="2026-05-25" duration="3" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="26" uid="02ae4e34c0aa49ad955090d4b0f352cd" name="Implementacja modułu Egzaminy i kolokwia" meeting="false" start="2026-05-25" duration="4" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="25" uid="4d28b6e691db48259f55ff8b2ea97ce3" name="Implementacja Repozytorium zasad" meeting="false" start="2026-05-26" duration="3" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="24" uid="6af3f58c63f64b2cbc5d6d76cf7b3b8a" name="Integracja modułów" meeting="false" start="2026-05-29" duration="3" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+        <task id="50" uid="0890692866024b81bc519b69c4f97a36" name="Components implementation completion" meeting="true" start="2026-05-25" duration="0" complete="0" thirdDate="2026-05-15" thirdDate-constraint="0" expand="true"/>
+        <task id="3" uid="5eb6a9fe930b40b1a99972a28cb132f0" name="Modules implementation" meeting="false" start="2026-05-21" duration="9" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="false">
+            <task id="30" uid="62e8119f0e4e413d81b5f4cacc978b34" name="Calendar implementation" meeting="false" start="2026-05-21" duration="7" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="29" uid="eeadc3b1b1a84f74a6c8b0d85c071a3e" name="Home screen implementation" meeting="false" start="2026-05-22" duration="4" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="28" uid="41682bc9771c479688c4769065d967f1" name="My subjects module implementation" meeting="false" start="2026-05-25" duration="4" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="27" uid="84baf9732d4c4663b224f095950a283a" name="Add subject module implementation" meeting="false" start="2026-05-25" duration="3" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="26" uid="02ae4e34c0aa49ad955090d4b0f352cd" name="Exams and colloquiums module implementation" meeting="false" start="2026-05-25" duration="4" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="25" uid="4d28b6e691db48259f55ff8b2ea97ce3" name="Rules repository implementation" meeting="false" start="2026-05-26" duration="3" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="24" uid="6af3f58c63f64b2cbc5d6d76cf7b3b8a" name="Module integration" meeting="false" start="2026-05-29" duration="3" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="51" uid="8232bdf2e5ab482792dcac89f3c5ea2e" name="Zakończenie implementacji modułów" meeting="true" start="2026-06-02" duration="0" complete="0" thirdDate="2026-05-15" thirdDate-constraint="0" expand="true"/>
-        <task id="4" uid="5b475e99353c4eccb83324b4ebfc7d69" name="Testowanie i integracja" meeting="false" start="2026-05-29" duration="3" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="false">
-            <task id="35" uid="308b5cb3a4654e11a2f62a858b43c6a4" name="Testy funkcjonalne" meeting="false" start="2026-05-29" duration="3" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="34" uid="632fbeb400614edbba359dc35b2ff26e" name="Testy integracyjne" meeting="false" start="2026-06-01" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="33" uid="3aa88b8d45f7480f947b65d261073ba5" name="Naprawa błędów" meeting="false" start="2026-06-01" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="32" uid="d49d02e1c0db4997ac04342d3e08b8e7" name="Refaktoryzacja kodu" meeting="false" start="2026-06-01" duration="1" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
-            <task id="31" uid="8a2a4ac9900d43338f71914843b17a83" name="Optymalizacja interfejsu" meeting="false" start="2026-06-01" duration="1" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+        <task id="51" uid="8232bdf2e5ab482792dcac89f3c5ea2e" name="Modules implementation completion" meeting="true" start="2026-06-02" duration="0" complete="0" thirdDate="2026-05-15" thirdDate-constraint="0" expand="true"/>
+        <task id="4" uid="5b475e99353c4eccb83324b4ebfc7d69" name="Testing and integration" meeting="false" start="2026-05-29" duration="3" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="false">
+            <task id="35" uid="308b5cb3a4654e11a2f62a858b43c6a4" name="Functional tests" meeting="false" start="2026-05-29" duration="3" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="34" uid="632fbeb400614edbba359dc35b2ff26e" name="Integration tests" meeting="false" start="2026-06-01" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="33" uid="3aa88b8d45f7480f947b65d261073ba5" name="Bug fixing" meeting="false" start="2026-06-01" duration="2" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="32" uid="d49d02e1c0db4997ac04342d3e08b8e7" name="Code refactoring" meeting="false" start="2026-06-01" duration="1" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="31" uid="8a2a4ac9900d43338f71914843b17a83" name="UI optimization" meeting="false" start="2026-06-01" duration="1" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="52" uid="265e3b53202748ceb2a75461267f62f8" name="Zakończenie testów i integracji" meeting="true" start="2026-06-02" duration="0" complete="0" thirdDate="2026-05-15" thirdDate-constraint="0" expand="true"/>
-        <task id="5" uid="343d05d1134044b99e05dfd9e8825768" name="Dokumentacja i wdrożenie" meeting="false" start="2026-06-02" duration="5" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="false">
-            <task id="39" uid="8a6d10031de446e884b97dc41e9aa570" name="Aktualizacja dokumentacji projektowej" meeting="false" start="2026-06-02" duration="1" complete="0" thirdDate="2026-04-30" thirdDate-constraint="0" expand="true"/>
-            <task id="40" uid="106a6e185b1d49da9af0d4c70eac7c29" name="Opracowanie diagramów systemowych" meeting="false" start="2026-06-02" duration="2" complete="0" thirdDate="2026-04-30" thirdDate-constraint="0" expand="true"/>
-            <task id="45" uid="84e33c71f22e49c5b98763dbea5772c3" name="Przygotowanie dokumentacji technicznej" meeting="false" start="2026-06-03" duration="1" complete="0" thirdDate="2026-04-30" thirdDate-constraint="0" expand="true"/>
-            <task id="44" uid="5ce4b4dd163845559f40354410230f30" name="Przygotowanie dokumentacji użytkownika" meeting="false" start="2026-06-03" duration="1" complete="0" thirdDate="2026-04-30" thirdDate-constraint="0" expand="true"/>
-            <task id="42" uid="985997617c2745ddb26e2219ae4b16ad" name="Przygotowanie prezentacji projektu" meeting="false" start="2026-06-08" duration="1" complete="0" thirdDate="2026-04-30" thirdDate-constraint="0" expand="true"/>
+        <task id="52" uid="265e3b53202748ceb2a75461267f62f8" name="Testing and integration completion" meeting="true" start="2026-06-02" duration="0" complete="0" thirdDate="2026-05-15" thirdDate-constraint="0" expand="true"/>
+        <task id="5" uid="343d05d1134044b99e05dfd9e8825768" name="Documentation and delivery" meeting="false" start="2026-06-02" duration="5" complete="0" thirdDate="2026-05-29" thirdDate-constraint="0" expand="false">
+            <task id="39" uid="8a6d10031de446e884b97dc41e9aa570" name="Update of project documentation" meeting="false" start="2026-06-02" duration="1" complete="0" thirdDate="2026-04-30" thirdDate-constraint="0" expand="true"/>
+            <task id="40" uid="106a6e185b1d49da9af0d4c70eac7c29" name="System diagrams preparation" meeting="false" start="2026-06-02" duration="2" complete="0" thirdDate="2026-04-30" thirdDate-constraint="0" expand="true"/>
+            <task id="45" uid="84e33c71f22e49c5b98763dbea5772c3" name="Technical documentation preparation" meeting="false" start="2026-06-03" duration="1" complete="0" thirdDate="2026-04-30" thirdDate-constraint="0" expand="true"/>
+            <task id="44" uid="5ce4b4dd163845559f40354410230f30" name="User documentation preparation" meeting="false" start="2026-06-03" duration="1" complete="0" thirdDate="2026-04-30" thirdDate-constraint="0" expand="true"/>
+            <task id="42" uid="985997617c2745ddb26e2219ae4b16ad" name="Project presentation preparation" meeting="false" start="2026-06-08" duration="1" complete="0" thirdDate="2026-04-30" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="53" uid="4b0d517628c04972ae8fce806ee0eda5" name="Zakończenie dokumentacji" meeting="true" start="2026-06-08" duration="0" complete="0" thirdDate="2026-05-15" thirdDate-constraint="0" expand="true"/>
-        <task id="41" uid="f73d73d3fb85434aa628908aeddba9b8" name="Oddanie projektu" meeting="true" start="2026-06-11" duration="0" complete="0" thirdDate="2026-04-30" thirdDate-constraint="0" expand="true"/>
+        <task id="53" uid="4b0d517628c04972ae8fce806ee0eda5" name="Documentation completion" meeting="true" start="2026-06-08" duration="0" complete="0" thirdDate="2026-05-15" thirdDate-constraint="0" expand="true"/>
+        <task id="41" uid="f73d73d3fb85434aa628908aeddba9b8" name="Project submission" meeting="true" start="2026-06-11" duration="0" complete="0" thirdDate="2026-04-30" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources/>
     <allocations/>

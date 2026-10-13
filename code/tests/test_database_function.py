@@ -1,6 +1,6 @@
 import sqlite3
 import pytest
-from datetime import date
+from datetime import date, timedelta
 
 from database.database_sqlite import SqliteAppRepository
 from Widgets.calendarEvents import build_week_calendar_events
@@ -201,18 +201,19 @@ def test_get_events_in_range(db_repo):
 
 def test_seed_schedule_spreads_across_week(db_repo):
     DatabaseStarter(db_repo).add_test_subjects()
-    week_start = date(2026, 6, 1)
+    # Demo term dates are relative to today — use the current week, not a fixed June date.
+    week_start = date.today() - timedelta(days=date.today().weekday())
     entries = db_repo.get_all_schedule_entries()
     events = build_week_calendar_events(week_start, entries)
     by_date = {}
     for item in events:
         by_date.setdefault(item['date'].isoformat(), []).append(item['data'].title)
 
-    assert len(by_date['2026-06-01']) == 2
-    assert len(by_date['2026-06-02']) == 2
-    assert len(by_date['2026-06-03']) == 3
-    assert len(by_date['2026-06-04']) == 2
-    assert len(by_date['2026-06-05']) == 3
+    assert len(by_date[(week_start + timedelta(days=0)).isoformat()]) == 2
+    assert len(by_date[(week_start + timedelta(days=1)).isoformat()]) == 2
+    assert len(by_date[(week_start + timedelta(days=2)).isoformat()]) == 3
+    assert len(by_date[(week_start + timedelta(days=3)).isoformat()]) == 2
+    assert len(by_date[(week_start + timedelta(days=4)).isoformat()]) == 3
 
 # absences
 

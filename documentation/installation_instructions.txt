@@ -1,39 +1,39 @@
 --------------------------------------------------------------------------------
-1. WYMAGANIA WSTĘPNE
+1. REQUIREMENTS
 --------------------------------------------------------------------------------
 
-  Python .................. wersja 3.9 lub nowsza (zalecane 3.10–3.12)
-  System .................. Windows 10/11, Linux lub macOS
-  Internet ................ przy pierwszej instalacji bibliotek (pip)
-  Wolne miejsce na dysku .. ok. 500 MB (środowisko + zależności)
+  Python .................. 3.9 or newer (recommended: 3.10–3.12)
+  System .................. Windows 10/11, Linux, or macOS
+  Internet ................ needed for the first library install (pip)
+  Free disk space ......... about 500 MB (venv + dependencies)
 
-Aplikacja korzysta z biblioteki Kivy (interfejs graficzny) oraz wbudowanej
-w Pythona bazy SQLite.
+The app uses Kivy for the graphical interface and SQLite (built into Python)
+for local data storage.
 
 
 --------------------------------------------------------------------------------
-2. INSTALACJA JĘZYKA PYTHON
+2. INSTALL PYTHON
 --------------------------------------------------------------------------------
 
 WINDOWS
 -------
 
-  1. Wejdź na stronę: https://www.python.org/downloads/
-  2. Pobierz instalator Pythona 3.9+ (np. Python 3.12).
-  3. Uruchom instalator.
-  4. WAŻNE: na pierwszym ekranie zaznacz opcję „Add python.exe to PATH”.
-  5. Kliknij „Install Now” i dokończ instalację.
-  6. Sprawdź instalację w wierszu poleceń (cmd lub PowerShell):
+  1. Go to: https://www.python.org/downloads/
+  2. Download Python 3.9+ (for example Python 3.12).
+  3. Run the installer.
+  4. IMPORTANT: on the first screen, check “Add python.exe to PATH”.
+  5. Click “Install Now” and finish the setup.
+  6. Check the install in Command Prompt or PowerShell:
 
        python --version
        pip --version
 
-     Powinna wyświetlić się wersja Pythona (np. Python 3.12.x) oraz pip.
+     You should see a Python version (for example Python 3.12.x) and pip.
 
 LINUX
 -----
 
-  Większość dystrybucji ma Pythona w repozytorium pakietów:
+  Most distributions include Python in their package manager:
 
   Debian / Ubuntu:
     sudo apt update
@@ -42,11 +42,11 @@ LINUX
   Fedora:
     sudo dnf install python3 python3-pip
 
-  Sprawdzenie:
+  Check:
     python3 --version
     python3 -m pip --version
 
-  Zależności Kivy na Linuxie (biblioteki systemowe):
+  Kivy system libraries on Linux:
 
   Debian / Ubuntu:
     sudo apt install -y python3-dev ffmpeg libsdl2-dev libsdl2-image-dev \
@@ -56,36 +56,36 @@ LINUX
 macOS
 -----
 
-  1. Zainstaluj Pythona z https://www.python.org/downloads/
-     LUB przez Homebrew:
+  1. Install Python from https://www.python.org/downloads/
+     OR with Homebrew:
 
        brew install python3
 
-  2. Sprawdź:
+  2. Check:
        python3 --version
        python3 -m pip --version
 
 
 --------------------------------------------------------------------------------
-3. POBRANIE PROJEKTU
+3. GET THE PROJECT
 --------------------------------------------------------------------------------
 
-  Sklonuj repozytorium lub rozpakuj archiwum z projektem, a następnie przejdź
-  do folderu projektu:
+  Clone the repository or unpack the project archive, then go into the
+  project folder:
 
-    git clone <adres-repozytorium>
+    git clone <repository-url>
     cd student-planner
 
-  Jeśli nie używasz Gita, wystarczy rozpakować folder projektu i otworzyć go
-  w terminalu.
+  If you do not use Git, just unpack the project folder and open it in
+  a terminal.
 
 
 --------------------------------------------------------------------------------
-4. KONFIGURACJA ŚRODOWISKA (ZALECANE)
+4. SET UP A VIRTUAL ENVIRONMENT (RECOMMENDED)
 --------------------------------------------------------------------------------
 
-  Zaleca się pracę w wirtualnym środowisku Python (venv) — izoluje zależności
-  projektu od reszty systemu.
+  Use a Python virtual environment (venv). It keeps project libraries
+  separate from the rest of your system.
 
   Windows:
     python -m venv venv
@@ -95,185 +95,185 @@ macOS
     python3 -m venv venv
     source venv/bin/activate
 
-  Po aktywacji w terminalu pojawi się prefiks (venv).
+  After activation, the terminal prompt shows (venv).
 
-  Środowisko dezaktywujesz poleceniem: deactivate
+  To leave the environment, run: deactivate
 
 
 --------------------------------------------------------------------------------
-5. INSTALACJA WYMAGANYCH BIBLIOTEK
+5. INSTALL REQUIRED LIBRARIES
 --------------------------------------------------------------------------------
 
-  Wszystkie zależności projektu znajdują się w pliku requirements.txt.
+  All project dependencies are listed in requirements.txt.
 
-  SPOSÓB 1 — skrypt instalacyjny (zalecany)
+  OPTION 1 — install script (recommended)
 
-  Windows — uruchom w folderze projektu:
+  Windows — run this in the project folder:
     scripts\install_requirements.bat
 
   Linux / macOS:
     chmod +x scripts/install_requirements.sh
     ./scripts/install_requirements.sh
 
-  SPOSÓB 2 — ręczna instalacja przez pip
+  OPTION 2 — manual install with pip
 
     python -m pip install --upgrade pip
     python -m pip install -r requirements.txt
 
-  Na Linuxie / macOS zamiast „python” użyj „python3”, jeśli tak jest w systemie.
+  On Linux / macOS, use “python3” instead of “python” if that is what
+  your system uses.
 
-  Zawartość requirements.txt:
+  What is in requirements.txt:
 
-    kivy   — graficzny interfejs użytkownika (uruchomienie aplikacji)
-    pytest — testy jednostkowe (PYTHONPATH=code python -m pytest code/tests/)
+    kivy   — graphical user interface (needed to run the app)
+    Pillow — image support used by the UI
+    pytest — unit tests (PYTHONPATH=code python -m pytest code/tests/)
 
-  UWAGA: Do budowania pliku .exe na Windows potrzebny jest dodatkowo pakiet
-  pyinstaller (pip install pyinstaller). Nie jest wymagany do zwykłego
-  uruchomienia aplikacji ze źródeł.
+  NOTE: To build a Windows .exe you also need pyinstaller
+  (pip install pyinstaller). You do not need it to run the app from source.
 
 
 --------------------------------------------------------------------------------
-6. INSTALACJA POTRZEBNYCH ROZSZERZEŃ (OPCJONALNIE)
+6. OPTIONAL IDE SETUP
 --------------------------------------------------------------------------------
 
   VISUAL STUDIO CODE
 
-  Jeśli pracujesz w VS Code, zainstaluj rozszerzenia:
+  If you use VS Code, install these extensions:
 
     Python  — ms-python.python
-              obsługa Pythona, uruchamianie skryptów, venv
+              Python support, run scripts, venv
 
     Pylance — ms-python.vscode-pylance
-              podpowiedzi i analiza kodu (często instalowane z Python)
+              code hints and analysis (often installed with Python)
 
-  Po otwarciu folderu projektu VS Code powinien wykryć interpreter z venv —
-  wybierz go z paska dolnego (Python 3.x.x ('venv')).
+  After you open the project folder, VS Code should detect the venv
+  interpreter — select it from the bottom status bar
+  (Python 3.x.x ('venv')).
 
-  PYCHARM / INNE IDE
+  PYCHARM / OTHER IDES
 
-  Wystarczy wskazać interpreter Pythona z utworzonego środowiska venv
-  i uruchomić plik app.py.
+  Point the IDE to the Python interpreter inside your venv, then run
+  app.py.
 
 
 --------------------------------------------------------------------------------
-7. URUCHOMIENIE APLIKACJI
+7. RUN THE APPLICATION
 --------------------------------------------------------------------------------
 
-  Upewnij się, że jesteś w folderze projektu i (jeśli używasz) środowisko
-  venv jest aktywne.
+  Make sure you are in the project folder and (if you use it) the venv
+  is active.
 
     python app.py
 
-  Na Linuxie / macOS:
+  On Linux / macOS:
 
     python3 app.py
 
-  Po starcie otworzy się okno aplikacji Student Planner.
+  After start, the Student Planner window should open.
 
-  URUCHOMIENIE Z PLIKU .EXE (TYLKO WINDOWS)
+  RUN FROM A .EXE FILE (WINDOWS ONLY)
 
-  Gotowy build nie jest domyślnie częścią repozytorium. Po zbudowaniu
-  (patrz niżej) program znajdziesz w:
+  A ready build is not part of the repository by default. After you build
+  it (see below), you will find the program here:
 
     dist\StudentPlanner\StudentPlanner.exe
 
-  Ważne:
-    - plik .exe działa wyłącznie na Windows;
-    - uruchamiaj go z całego folderu dist\StudentPlanner\ (razem z podfolderem
-      _internal);
-    - na Linuxie i macOS należy uruchamiać aplikację ze źródeł (python app.py).
+  Important:
+    - the .exe works only on Windows;
+    - run it from the full dist\StudentPlanner\ folder (including the
+      _internal subfolder);
+    - on Linux and macOS, run the app from source (python app.py).
 
-  Aby zbudować .exe samodzielnie (Windows):
+  To build the .exe yourself (Windows):
 
     pip install pyinstaller
     scripts\build.bat
 
-  Wynikowy program znajdziesz w dist\StudentPlanner\.
+  The output will be in dist\StudentPlanner\.
 
 
 --------------------------------------------------------------------------------
-8. BAZA DANYCH
+8. DATABASE
 --------------------------------------------------------------------------------
 
-  Aplikacja używa lokalnego pliku SQLite:
+  The app uses a local SQLite file:
 
     data/student_planner.db
 
-  Przy pierwszym uruchomieniu (gdy baza nie istnieje lub nie ma przedmiotów)
-  aplikacja tworzy schemat tabel i automatycznie wstawia przykładowe dane
-  testowe (seeder). Jeśli w bazie są już przedmioty demo, przy starcie
-  odświeżane są ich daty względem bieżącego dnia, żeby kalendarz od razu
-  pokazywał kafelki.
+  On first run (when the database is missing or has no subjects), the app
+  creates the tables and inserts sample demo data (seeder). If demo
+  subjects are already there, their dates are refreshed relative to today
+  so the calendar shows tiles right away.
 
-  W repozytorium może znajdować się gotowy plik data/student_planner.db —
-  aplikacja korzysta z niego bezpośrednio (nie trzeba nic kopiować do
-  AppData ani innych katalogów systemowych).
+  The repository may already include data/student_planner.db — the app
+  uses that file directly. You do not need to copy it to AppData or any
+  other system folder.
 
-  JAK PRZEJŚĆ NA WŁASNE DANE
+  HOW TO SWITCH TO YOUR OWN DATA
 
-  1. W aplikacji usuń przykładowe przedmioty (ekran szczegółów przedmiotu).
-  2. Dodaj własne przedmioty przez formularz „Dodaj przedmiot”.
-  3. Nie zostawiaj całkowicie pustej bazy przed restartem — przy braku
-     przedmiotów seeder wstawi dane przykładowe ponownie.
+  1. In the app, delete the sample subjects (subject details screen).
+  2. Add your own subjects with the “Add subject” form.
+  3. Do not leave the database completely empty before a restart — if
+     there are no subjects, the seeder will insert sample data again.
 
-  Opcjonalnie: pełny reset bazy do świeżego demo:
+  Optional: full reset of the database to fresh demo data:
 
     PYTHONPATH=code python -m tests.create_default_values
 
   Windows (PowerShell):
     $env:PYTHONPATH="code"; python -m tests.create_default_values
 
-  Przed ręczną podmianą lub usunięciem pliku data/student_planner.db warto
-  zrobić kopię zapasową (np. data/student_planner_backup.db).
+  Before you replace or delete data/student_planner.db, make a backup
+  (for example data/student_planner_backup.db).
 
 
 --------------------------------------------------------------------------------
-9. URUCHOMIENIE TESTÓW (OPCJONALNIE)
+9. RUN TESTS (OPTIONAL)
 --------------------------------------------------------------------------------
 
-  W folderze projektu:
+  In the project folder:
 
     PYTHONPATH=code python -m pytest code/tests/ -q
 
   Windows (PowerShell):
     $env:PYTHONPATH="code"; python -m pytest code/tests/ -q
 
-  Testy weryfikują m.in. logikę kalendarza, bazę danych, formularze
-  i powiadomienia.
+  The tests check things like calendar logic, the database, forms, and
+  notifications.
 
 
 --------------------------------------------------------------------------------
-10. ROZWIĄZYWANIE PROBLEMÓW
+10. TROUBLESHOOTING
 --------------------------------------------------------------------------------
 
-  Problem: python nie jest rozpoznawane
-  Rozwiązanie: Na Windows zaznacz „Add to PATH” przy instalacji Pythona
-               lub użyj: py -m pip / py app.py
+  Problem: “python” is not recognized
+  Solution: On Windows, check “Add to PATH” when installing Python,
+            or use: py -m pip / py app.py
 
-  Problem: Błąd importu kivy
-  Rozwiązanie: Uruchom ponownie pip install -r requirements.txt
-               w aktywnym venv
+  Problem: Import error for kivy
+  Solution: Run pip install -r requirements.txt again in an active venv
 
-  Problem: Aplikacja nie startuje na Linuxie
-  Rozwiązanie: Zainstaluj zależności systemowe SDL2 (sekcja 2)
+  Problem: The app does not start on Linux
+  Solution: Install the SDL2 system packages (section 2)
 
-  Problem: Puste dane po starcie
-  Rozwiązanie: Uruchom ponownie aplikację (auto-seed przy pustej bazie)
-               lub: PYTHONPATH=code python -m tests.create_default_values
+  Problem: Empty data after start
+  Solution: Start the app again (auto-seed on an empty database)
+            or run: PYTHONPATH=code python -m tests.create_default_values
 
-  Problem: .exe nie działa na Linuxie/Macu
-  Rozwiązanie: Użyj python app.py — .exe jest tylko dla Windows
+  Problem: The .exe does not work on Linux/Mac
+  Solution: Use python app.py — the .exe is Windows-only
 
-  Problem: Brak okna po app.py
-  Rozwiązanie: Sprawdź komunikaty w terminalu; upewnij się, że Kivy
-               zainstalowało się bez błędów
+  Problem: No window after app.py
+  Solution: Check the terminal messages; make sure Kivy installed
+            without errors
 
 
 --------------------------------------------------------------------------------
-11. SKRÓT — NAJSZYBSZA ŚCIEŻKA
+11. QUICK START
 --------------------------------------------------------------------------------
 
-  Windows (ze źródeł):
+  Windows (from source):
 
     python -m venv venv
     venv\Scripts\activate
