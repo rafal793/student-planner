@@ -72,7 +72,7 @@ class IAppRepository(ABC):
     """
     Notes
     """
-
+    
     @abstractmethod
     def get_daily_note(self, subject_id:int , date:str) -> str:
         pass
